@@ -95,6 +95,8 @@ public class CustomerModel {
                 productForTrolley.setOrderedQuantity(1);
                 trolley.add(productForTrolley);
             }
+            // Sort trolley by product ID (ascending)
+            Collections.sort(trolley);
             displayTaTrolley = ProductListFormatter.buildString(trolley); //build a String for trolley so that we can show it
         }
         else{
