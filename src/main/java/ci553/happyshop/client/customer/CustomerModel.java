@@ -71,6 +71,17 @@ public class CustomerModel {
             // 1. Merges items with the same product ID (combining their quantities).
             // 2. Sorts the products in the trolley by product ID.
             trolley.add(theProduct);
+            boolean merged = false;
+            // Merge duplicate products (same product ID)
+            // Loop through the trolley to see if this product was already added before
+            for (Product p : trolley) {
+                // if the ID matches, increase the quantity instead of creating a new row
+                if (p.getProductId().equals(product.getProductId())) {
+                    p.setOrderedQuantity(p.getOrderedQuantity() + 1);
+                    merged = true;
+                    break;
+                }
+            }
             displayTaTrolley = ProductListFormatter.buildString(trolley); //build a String for trolley so that we can show it
         }
         else{
