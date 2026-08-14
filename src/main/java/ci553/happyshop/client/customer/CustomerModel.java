@@ -82,6 +82,19 @@ public class CustomerModel {
                     break;
                 }
             }
+            // if product not already in trolley
+            if (!merged) {
+                // Create a new Product object so its orderedQuantity is independent of the search result
+                Product productForTrolley = new Product(
+                        product.getProductId(),
+                        product.getProductDescription(),
+                        product.getProductImageName(),
+                        product.getUnitPrice(),
+                        product.getStockQuantity()
+                );
+                productForTrolley.setOrderedQuantity(1);
+                trolley.add(productForTrolley);
+            }
             displayTaTrolley = ProductListFormatter.buildString(trolley); //build a String for trolley so that we can show it
         }
         else{
