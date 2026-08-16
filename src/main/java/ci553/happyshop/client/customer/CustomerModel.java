@@ -87,11 +87,11 @@ public class CustomerModel {
             if (!merged) {
                 // Create a new Product object so its orderedQuantity is independent of the search result
                 Product productForTrolley = new Product(
-                        product.getProductId(),
-                        product.getProductDescription(),
-                        product.getProductImageName(),
-                        product.getUnitPrice(),
-                        product.getStockQuantity()
+                        theProduct.getProductId(),
+                        theProduct.getProductDescription(),
+                        theProduct.getProductImageName(),
+                        theProduct.getUnitPrice(),
+                        theProduct.getStockQuantity()
                 );
                 productForTrolley.setOrderedQuantity(1);
                 trolley.add(productForTrolley);
