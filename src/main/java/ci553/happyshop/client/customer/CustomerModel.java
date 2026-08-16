@@ -77,7 +77,7 @@ public class CustomerModel {
             // Loop through the trolley to see if this product was already added before
             for (Product p : trolley) {
                 // if the ID matches, increase the quantity instead of creating a new row
-                if (p.getProductId().equals(product.getProductId())) {
+                if (p.getProductId().equals(theProduct.getProductId())) {
                     p.setOrderedQuantity(p.getOrderedQuantity() + 1);
                     merged = true;
                     break;
