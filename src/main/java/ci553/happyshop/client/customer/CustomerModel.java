@@ -115,8 +115,7 @@ public class CustomerModel {
             // If any products are insufficient, the update will be rolled back.
             // If all products are sufficient, the database will be updated, and insufficientProducts will be empty.
             // Note: If the trolley is already organized (merged and sorted), grouping is unnecessary.
-            ArrayList<Product> groupedTrolley= groupProductsById(trolley);
-            ArrayList<Product> insufficientProducts= databaseRW.purchaseStocks(groupedTrolley);
+            ArrayList<Product> insufficientProducts= databaseRW.purchaseStocks(trolley);
 
             if(insufficientProducts.isEmpty()){ // If stock is sufficient for all products
                 //get OrderHub and tell it to make a new Order
