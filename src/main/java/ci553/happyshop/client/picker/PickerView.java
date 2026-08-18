@@ -55,6 +55,8 @@ public class PickerView  {
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
 
+        registerDarkModeListener();
+
         // Set the window close request to prevent closing if the order is not collected
         window.setOnCloseRequest(event -> {
             if (!taOrderDetail.getText().equals("")) {
@@ -122,6 +124,30 @@ public class PickerView  {
         } catch (IOException e) {
             throw new RuntimeException("Failed to handle button action: " + btnText, e);
         }
+    }
+
+    private void registerDarkModeListener() {
+
+        Runnable refreshStyles = () -> {
+            // Root containers
+            vbOrderMapRoot.setStyle(UIStyle.rootStyle);
+            vbOrderDetailRoot.setStyle(UIStyle.rootStyle);
+
+            // Text areas
+            taOrderMap.setStyle(UIStyle.listViewStyle);
+            taOrderDetail.setStyle(UIStyle.listViewStyle);
+
+            // Titles
+            laOrderMapRootTitle.setStyle(UIStyle.labelTitleStyle);
+            laDetailRootTitle.setStyle(UIStyle.labelTitleStyle);
+
+            // Buttons
+            btnProgressing.setStyle(UIStyle.buttonStyle);
+            btnCollected.setStyle(UIStyle.buttonStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
     }
 
     void update(String strOrderMap, String strOrderDetail) {
