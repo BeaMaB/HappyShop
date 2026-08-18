@@ -45,6 +45,10 @@ public class PickerView  {
     public void start(Stage window) {
         vbOrderMapRoot = createOrderMapRoot();
         vbOrderDetailRoot = createOrderDetailRoot();
+
+        vbOrderMapRoot.setStyle(UIStyle.rootStyle);
+        vbOrderDetailRoot.setStyle(UIStyle.rootStyle);
+
         scene = new Scene(vbOrderMapRoot, WIDTH, HEIGHT);
         window.setScene(scene);
         window.setTitle("🛒 HappyShop Order Picker");
