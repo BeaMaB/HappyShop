@@ -38,6 +38,9 @@ public class CustomerView  {
     private HBox hbRoot; // Top-level layout manager
     private VBox vbTrolleyPage;  //vbTrolleyPage and vbReceiptPage will swap with each other when need
     private VBox vbReceiptPage;
+    private ListView<Product> obrLvProducts;
+    private ObservableList<Product> obeProductList;
+    private VBox vbSearchResult; // shows number of products found
 
     TextField tfSearchKeyword; // user typing in it (Search for ID and product name)
 
