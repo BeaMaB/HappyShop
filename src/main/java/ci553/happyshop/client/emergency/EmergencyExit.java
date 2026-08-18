@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -66,6 +67,26 @@ public class EmergencyExit {
         // Setting the VBox as the CENTER of the BorderPane
         // effectively centers the entire group in the window.
         borderPane.setCenter(container);
+
+         // Inside EmergencyExit constructor (Dark Mode)
+        Runnable refreshExitStyles = () -> {
+            // This updates the background color of the exit window
+            borderPane.setStyle(UIStyle.rootStyle);
+            // Update the label text color
+            lblShutdown.setStyle(UIStyle.labelShutdown);
+            // Update the red button
+            btnExit.setStyle(UIStyle.exitBtnStyle);
+            //Update Shutdown Image
+            if (UIStyle.isDarkMode) {
+                ivExit.setImage(new Image("PowerOffButtonDarkMode.png"));
+            } else {
+                ivExit.setImage(new Image("PowerOffButton.png"));
+            }
+            };
+
+        UIStyle.addThemeListener(refreshExitStyles);
+        refreshExitStyles.run();
+
         Scene scene = new Scene(borderPane, WIDTH, HEIGHT);
         Stage window = new Stage();
         window.setScene(scene);
