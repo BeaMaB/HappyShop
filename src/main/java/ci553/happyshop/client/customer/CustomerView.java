@@ -409,7 +409,17 @@ public class CustomerView  {
         vbReceiptPage = new VBox(15, laPageTitle, taReceipt, btnCloseReceipt);
         vbReceiptPage.setPrefWidth(COLUMN_WIDTH);
         vbReceiptPage.setAlignment(Pos.TOP_CENTER);
-        vbReceiptPage.setStyle(UIStyle.rootStyleYellow);
+        vbReceiptPage.setStyle(UIStyle.rootStyle);
+
+        Runnable refreshReceiptStyles = () -> {
+            vbReceiptPage.setStyle(UIStyle.rootStyle);
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            taReceipt.setStyle(UIStyle.listViewStyle);
+            btnCloseReceipt.setStyle(UIStyle.buttonStyle);
+        };
+
+        UIStyle.addThemeListener(refreshReceiptStyles);
+        refreshReceiptStyles.run();
         return vbReceiptPage;
     }
 
