@@ -333,6 +333,19 @@ public class CustomerView  {
         vbTrolleyPage.setPrefWidth(COLUMN_WIDTH);
         vbTrolleyPage.setAlignment(Pos.TOP_CENTER);
         vbTrolleyPage.setStyle("-fx-padding: 15px;");
+        // top bar: title + theme/music buttons
+        BorderPane topBar = new BorderPane();
+        topBar.setPadding(new Insets(5, 10, 5, 10));
+
+        // Center title
+        laPageTitle.setStyle(UIStyle.labelTitleStyle);
+        topBar.setCenter(laPageTitle);
+
+        // Dark mode button on the left
+        topBar.setLeft(btnDarkMode);
+
+        // Music button on the right
+        topBar.setRight(btnMusicToggle);
         return vbTrolleyPage;
     }
 
