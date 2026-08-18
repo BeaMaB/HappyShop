@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -52,6 +53,11 @@ public class EmergencyExit {
         // Create the Shutdown Text
         Label lblShutdown = new Label("SHUTDOWN");
         lblShutdown.setStyle(UIStyle.labelShutdown);
+        // The Vertical Layout (VBox)
+        VBox container = new VBox(20);
+        container.setAlignment(Pos.CENTER); // This centers children vertically and horizontally
+        container.getChildren().addAll(btnExit, lblShutdown);
+
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(btnExit);
 
