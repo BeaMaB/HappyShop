@@ -269,6 +269,10 @@ public class CustomerView  {
                         "Qty: " + product.getOrderedQuantity()
                 );
 
+                Label itemTotal = new Label(
+                        String.format("£%.2f", product.getUnitPrice() * product.getOrderedQuantity())
+                );
+
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
         taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
