@@ -1,5 +1,6 @@
 package ci553.happyshop.client.customer;
 
+import ci553.happyshop.utility.StorageLocation;
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WinPosManager;
 import ci553.happyshop.utility.WindowBounds;
