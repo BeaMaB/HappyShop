@@ -261,6 +261,14 @@ public class CustomerView  {
     private VBox createTrolleyPage() {
         Label laPageTitle = new Label("Trolley");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
+
+        // Music Toggle Button
+        Button btnMusicToggle = new Button("Music: ON");
+        btnMusicToggle.setTooltip(new Tooltip("Toggle Background Music"));
+        btnMusicToggle.setStyle(UIStyle.buttonFillBtnStyle);
+
+        btnMusicToggle.setOnAction(this::buttonClicked);
+
         trolleyList = FXCollections.observableArrayList();
         lvTrolley = new ListView<>(trolleyList);
         lbTrolleyTotal = new Label("Total: £0.00");
