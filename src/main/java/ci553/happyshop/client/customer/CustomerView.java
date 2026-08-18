@@ -236,7 +236,7 @@ public class CustomerView  {
         });
 
         // Combine everything into the VBox
-        VBox vbSearchPage = new VBox(15, laPageTitle, searchBox, hbBtn, hbSummary, vbSearchResult, obrLvProducts);
+        VBox vbSearchPage = new VBox(15, laPageTitle, searchBox, hbSummary, vbSearchResult, obrLvProducts);
         vbSearchPage.setPrefWidth(COLUMN_WIDTH);
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
         vbSearchPage.setStyle("-fx-padding: 15px;");
