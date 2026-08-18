@@ -316,6 +316,17 @@ public class CustomerView  {
         return vbTrolleyPage;
     }
 
+    private void updateTrolleyTotal() {
+
+        double total = 0;
+        for (Product p : trolleyList) {
+            total += p.getUnitPrice() * p.getOrderedQuantity();
+        }
+        lbTrolleyTotal.setText(
+                String.format("Total: £%.2f", total)
+        );
+    }
+
     private VBox createReceiptPage() {
         Label laPageTitle = new Label("Receipt");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
