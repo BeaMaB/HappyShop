@@ -48,6 +48,9 @@ public class EmergencyExit {
             System.exit(0);//forcefully shut down JVM (in case there are non-JavaFX threads)
         });
 
+        // Create the Shutdown Text
+        Label lblShutdown = new Label("SHUTDOWN");
+        lblShutdown.setStyle(UIStyle.labelShutdown);
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(btnExit);
 
