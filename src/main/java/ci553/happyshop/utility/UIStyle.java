@@ -25,6 +25,8 @@ import java.util.List;
 
 public record UIStyle() {
 
+    public static boolean isDarkMode = false;
+
     public static final int customerWinWidth = 600;
     public static final int customerWinHeight = 300;
     public static final int removeProNotifierWinWidth = customerWinWidth/2 +160;
