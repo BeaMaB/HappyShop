@@ -169,7 +169,8 @@ public record UIStyle() {
             detailAreaStyle = "-fx-font-family: 'Muli Black'; " + "-fx-font-size: 14px; " + "-fx-text-fill: #121212; " + "-fx-control-inner-background: #FFFFFF; " + "-fx-border-color: #121212; " + "-fx-border-width: 2;";
         }
 
-    public static final String alertContentUserActionStyle = "-fx-font-size: 14px;" +
-            "-fx-font-weight: normal; -fx-text-fill: green;";
-
+        for (Runnable listener : themeListeners) {
+            listener.run();
+        }
+    }
 }
