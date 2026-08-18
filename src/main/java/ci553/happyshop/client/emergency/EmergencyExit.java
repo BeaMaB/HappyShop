@@ -63,6 +63,9 @@ public class EmergencyExit {
         borderPane.setCenter(btnExit);
 
         borderPane.setStyle(UIStyle.rootStyle);
+        // Setting the VBox as the CENTER of the BorderPane
+        // effectively centers the entire group in the window.
+        borderPane.setCenter(container);
         Scene scene = new Scene(borderPane, WIDTH, HEIGHT);
         Stage window = new Stage();
         window.setScene(scene);
