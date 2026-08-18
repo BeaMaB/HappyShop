@@ -134,36 +134,40 @@ public record UIStyle() {
             alertContentUserActionStyle = "-fx-font-size: 14px; -fx-text-fill: #69F0AE;";
             alertBtnStyle = "-fx-background-color: #E2B327; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20;";
 
-    public static final String manageStockChildStyle = "-fx-background-color: lightgrey; " +
-            "-fx-border-color: lightgrey; " +
-            "-fx-border-width: 1px; " +
-            "-fx-padding: 5px;";
-
-    public static final String manageStockChildStyle1 = "-fx-background-color: lightyellow; " +
-            "-fx-border-color: lightyellow; " +
-            "-fx-border-width: 1px; " +
-            "-fx-padding: 5px;";
-
-    public static final String greenFillBtnStyle = "-fx-background-color: green; " +
-            "-fx-text-fill: white; -fx-font-size: 14px;";
-    public static final String redFillBtnStyle ="-fx-background-color: red; " +
-            "-fx-text-fill: white; -fx-font-size: 14px; ";
-
-    public static final String grayFillBtnStyle = "-fx-background-color: gray; " +
-            "-fx-text-fill: white; -fx-font-size: 14px; ";
-
-    public static final String blueFillBtnStyle ="-fx-background-color: blue; " +
-            "-fx-text-fill: white; -fx-font-size: 14px;";
-
-    public static final String alertBtnStyle ="-fx-background-color: green; " +
-            "-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;";
-
-    public static final String alertTitleLabelStyle = "-fx-font-size: 16px; " +
-            "-fx-font-weight: bold; " +
-            "-fx-text-fill: red; " + "-fx-background-color: lightblue;";
-
-    public static final String alertContentTextAreaStyle = "-fx-font-size: 14px;" +
-            "-fx-font-weight: normal;-fx-control-inner-background: lightyellow; -fx-text-fill: darkblue;";
+        } else {
+            //LIGHT MODE (Originals)
+            rootStyle = "-fx-background-color: #E2B327; -fx-padding: 8px;";
+            rootStyleHistory = "-fx-background-color: #E2B327";
+            labelTitleStyle = FONT_MAIN + "-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #121212;";
+            labelStyle = FONT_MAIN + "-fx-text-fill: #121212; -fx-font-weight: bold; -fx-font-size: 14px;";
+            labelShutdown = "-fx-text-fill: #D12F26; " + "-fx-font-family: 'Muli Black'; " + "-fx-font-weight: bold; " + "-fx-font-size: 20px; " + "-fx-letter-spacing: 2px;";
+            labelMulLineStyle = FONT_MAIN + "-fx-font-size: 12px; -fx-text-fill: #333333;";
+            textFiledStyle = "-fx-pref-height: 30;" + "-fx-background-color: white; -fx-text-fill: #121212; -fx-border-color: #121212; -fx-border-width: 1;" + ROUND_CORNER;
+            historyTextFiledStyle = "-fx-pref-height: 30;" + "-fx-background-color: white; -fx-text-fill: #121212; -fx-border-color: #121212; -fx-border-width: 1;";
+            textAreaStyle = "-fx-font-size: 14px; -fx-background-color: white; -fx-text-fill: black; -fx-border-color: #121212;";
+            buttonStyle = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-background-color: #121212; -fx-text-fill: #E2B327; -fx-font-weight: bold; " + ROUND_CORNER + BTN_PADDING;
+            comboBoxStyle = "-fx-pref-height: 30; -fx-font-weight: bold; -fx-text-fill: #121212; -fx-font-size: 14px; -fx-background-color: #FFFFFF;" + ROUND_CORNER;
+            comboBoxPopupStyle =  "data:text/css," + (".combo-box-popup { -fx-background-color: transparent; }" + ".combo-box-popup > .list-view {" + "-fx-background-color: white;" + "-fx-background-radius: 15;" + "-fx-border-radius: 15;" + "-fx-border-color: #cccccc;" + "-fx-border-width: 1;" +  "}").replace(" ", "%20");
+            listViewStyle = "-fx-font-family: 'Muli Black'; " + "-fx-font-size: 13px; " + "-fx-control-inner-background: white; " + "-fx-background-color: #121212, white; " + "-fx-background-insets: 0, 2; " + "-fx-background-radius: 0; " + "-fx-border-radius:0;" + "-fx-border-color: #121212; " + "-fx-border-width: 0.5; " + "-fx-padding: 0;";
+            receiptPageStyle = "-fx-background-color: white; -fx-border-color: #121212; -fx-border-width: 2; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 15;";
+            greenFillBtnStyle = FONT_MAIN + "-fx-pref-height: 30;" + " -fx-padding: 8 15 8 15; " + "-fx-font-weight: bold;" + "-fx-background-color: #28a745; -fx-text-fill: white;" + ROUND_CORNER;
+            greenFillBtnStyle2 = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-padding: 8 15 8 15;" + "-fx-background-color: #28a745; -fx-font-weight: bold; -fx-font-size: 18px;" + "-fx-text-fill: #121212;" + ROUND_CORNER;
+            grayFillBtnStyle = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-padding: 0 60 0 60; " + "-fx-background-color: #F44236; -fx-text-fill: white; -fx-font-weight: bold;" + ROUND_CORNER + BTN_PADDING;
+            blueFillBtnStyle = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-background-color: #007BFF; -fx-text-fill: white; -fx-font-weight: bold;" + ROUND_CORNER + BTN_PADDING;
+            redFillBtnStyle = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-background-color: #F44236; -fx-text-fill: white; -fx-font-weight: bold;" + ROUND_CORNER + BTN_PADDING;
+            redFillBtnStyle2 = FONT_MAIN + "-fx-pref-height: 30;" + "-fx-padding: 8 15 8 15;" + "-fx-background-color: #F44236; -fx-font-weight: bold; -fx-font-size: 18px;" + "-fx-text-fill: #121212;" + ROUND_CORNER;
+            buttonFillBtnStyle = FONT_MAIN + "-fx-background-color: #121212;" + "-fx-border-color: #121212;" + "-fx-background-radius: 50;" + "-fx-border-radius: 55;" + "-fx-text-fill: #E2B327;" + "-fx-font-weight: bold;";
+            exitBtnStyle = "-fx-background-color: #F44236; " + "-fx-background-radius: 80; " + "-fx-padding: 20; -fx-border-radius: 80; -fx-border-color: #D12F26; -fx-border-width: 4";
+            manageStockChildStyle = "-fx-background-color: white;  -fx-background-radius: 15; -fx-padding: 10;";
+            manageStockChildStyle1 = "-fx-background-color: white; -fx-padding: 5px; -fx-border-radius: 15;";
+            cardStyle = "-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;";
+            alertTitleLabelStyle = "-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #B48A00; -fx-background-color: #FFF9E6;";
+            alertContentTextAreaStyle = "-fx-font-size: 14px; -fx-control-inner-background: #FFFFFF; -fx-text-fill: #333333; -fx-border-color: #E2B327;";
+            alertContentUserActionStyle = "-fx-font-size: 14px; -fx-text-fill: #E2B327; -fx-font-weight: bold;";
+            alertBtnStyle = "-fx-background-color: #E2B327; -fx-text-fill: white; -fx-background-radius: 8;";
+            lineStyle = "-fx-background-color: #121212; -fx-min-width: 2px; -fx-max-width: 2px;";
+            detailAreaStyle = "-fx-font-family: 'Muli Black'; " + "-fx-font-size: 14px; " + "-fx-text-fill: #121212; " + "-fx-control-inner-background: #FFFFFF; " + "-fx-border-color: #121212; " + "-fx-border-width: 2;";
+        }
 
     public static final String alertContentUserActionStyle = "-fx-font-size: 14px;" +
             "-fx-font-weight: normal; -fx-text-fill: green;";
