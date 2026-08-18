@@ -257,8 +257,8 @@ public class CustomerView  {
         return vbSearchPage;
     }
 
-    private VBox CreateTrolleyPage() {
-        Label laPageTitle = new Label("🛒🛒  Trolley 🛒🛒");
+    private VBox createTrolleyPage() {
+        Label laPageTitle = new Label("Trolley");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
         trolleyList = FXCollections.observableArrayList();
         lvTrolley = new ListView<>(trolleyList);
