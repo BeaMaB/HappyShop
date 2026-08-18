@@ -145,6 +145,9 @@ public class CustomerView  {
 
         obeProductList = FXCollections.observableArrayList();
         obrLvProducts = new ListView<>(obeProductList);
+        obrLvProducts.setPrefHeight(HEIGHT - 100);
+        obrLvProducts.setFixedCellSize(50);
+        obrLvProducts.setStyle(UIStyle.listViewStyle);
         return vbSearchPage;
     }
 
