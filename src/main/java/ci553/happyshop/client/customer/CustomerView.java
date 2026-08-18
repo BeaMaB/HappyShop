@@ -280,6 +280,9 @@ public class CustomerView  {
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
         taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
+                btnPlus.setOnAction(e -> {
+                    cusController.increaseQuantity(product);
+                });
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setOnAction(this::buttonClicked);
