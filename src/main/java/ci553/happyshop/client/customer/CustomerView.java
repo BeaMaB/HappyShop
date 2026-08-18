@@ -260,11 +260,22 @@ public class CustomerView  {
             Button btn = (Button)event.getSource();
             String action = btn.getText();
             if(action.equals("Add to Trolley")){
-                showTrolleyOrReceiptPage(vbTrolleyPage); //ensure trolleyPage shows if the last customer did not close their receiptPage
-                // Add the currently searched product
-                cusController.addProductToTrolley(
-                        cusController.cusModel.getTheProduct()
-                );
+                // Get the product selected from the search results
+                Product selectedProduct =
+                        obrLvProducts.getSelectionModel().getSelectedItem();
+
+                if (selectedProduct != null) {
+
+                    // Show trolley page
+                    showTrolleyOrReceiptPage(vbTrolleyPage);
+
+                    // Add the selected product to the trolley
+                    cusController.addProductToTrolley(selectedProduct);
+
+                } else {
+                    // No product has been selected
+                    laSearchSummary.setText("Please select a product first");
+                }
                 return;
             }
             if(action.equals("OK & Close")){
