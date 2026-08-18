@@ -95,6 +95,12 @@ public class CustomerView  {
         btnSearch.setTooltip(new Tooltip("Search"));
         btnSearch.setStyle(UIStyle.buttonStyle);
         btnSearch.setOnAction(this::buttonClicked);
+
+        // Search bar and button together
+        HBox searchBox = new HBox(8, tfSearchKeyword, btnSearch);
+        searchBox.setAlignment(Pos.CENTER_LEFT);
+
+        // Add to Trolley button
         Button btnAddToTrolley = new Button("Add to Trolley");
         btnAddToTrolley.setStyle(UIStyle.buttonStyle);
         btnAddToTrolley.setOnAction(this::buttonClicked);
