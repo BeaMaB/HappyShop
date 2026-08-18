@@ -151,6 +151,18 @@ public class CustomerView  {
         // start with message card only
         obrLvProducts.setVisible(false);
         obrLvProducts.setManaged(false);
+        obrLvProducts.setCellFactory(param -> new ListCell<Product>() {
+            @Override
+            protected void updateItem(Product product, boolean empty) {
+                super.updateItem(product, empty);
+
+                if (empty || product == null) {
+                    setGraphic(null);
+                    System.out.println("setCellFactory - empty item");
+                } else {
+                }
+            }
+        });
         return vbSearchPage;
     }
 
