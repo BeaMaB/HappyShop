@@ -46,29 +46,7 @@ public record UIStyle() {
     public static final int HistoryWinHeight = 300;
 
     public static final int EmergencyExitWinWidth = 200;
-    public static final int EmergencyExitWinHeight = 300;
-
-    public static final String labelTitleStyle ="-fx-font-weight: bold; " +
-            "-fx-font-size: 16px; -fx-text-fill: purple;";
-
-    public static final String labelStyle = "-fx-font-weight: bold; " +
-            "-fx-font-size: 14px; " +
-            "-fx-text-fill: black; " +
-            "-fx-background-color: lightblue;";
-
-    public static final String comboBoxStyle ="-fx-font-weight: bold; " +
-            "-fx-font-size: 14px;";
-
-    public static final String buttonStyle= "-fx-font-size: 15";
-
-    public static final String rootStyle = "-fx-padding: 8px; " +
-            "-fx-background-color: lightgreen";
-
-    public static final String rootStyleBlue = "-fx-padding: 8px; " +
-            "-fx-background-color: lightblue";
-
-    public static final String rootStyleGray = "-fx-padding: 8px; " +
-            "-fx-background-color: lightgray";
+    public static final int EmergencyExitWinHeight = 325;
 
     public static final String rootStyleWarehouse = "-fx-padding: 8px; " +
             "-fx-background-color: lightpink";
