@@ -292,6 +292,14 @@ public class CustomerView  {
                     cusController.removeProduct(product);
                 });
 
+                HBox row = new HBox(5, id, name, quantity, btnMinus, btnPlus, btnRemove, itemTotal);
+                row.setAlignment(Pos.CENTER_LEFT);
+                HBox.setHgrow(name, Priority.ALWAYS);
+                setGraphic(row);
+            }
+        });
+
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setOnAction(this::buttonClicked);
         btnCancel.setStyle(UIStyle.buttonStyle);
