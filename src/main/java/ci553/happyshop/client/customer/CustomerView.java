@@ -404,7 +404,8 @@ public class CustomerView  {
         obrLvProducts.setManaged(true);
     }
 
-    public void update(String imageName, String searchResult, ArrayList<Product> products, String trolley, String receipt) {
+
+    public void update(String imageName, String searchResult, ArrayList<Product> products, ArrayList<Product> trolley, String receipt) {
 
         // Update search summary text
         if (products != null && !products.isEmpty()) {
