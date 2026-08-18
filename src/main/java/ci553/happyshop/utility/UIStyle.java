@@ -98,8 +98,6 @@ public record UIStyle() {
         setDarkMode(false); // Default to Light
     }
 
-    public static final String listViewStyle = "-fx-border-color: #ccc; " +
-            "-fx-border-width: 1px; -fx-background-color: white; -fx-font-size: 14px;";
     public static void setDarkMode(boolean dark) {
         isDarkMode = dark;
         if (dark) {
