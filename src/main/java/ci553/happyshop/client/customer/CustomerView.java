@@ -241,6 +241,13 @@ public class CustomerView  {
     private VBox CreateTrolleyPage() {
         Label laPageTitle = new Label("🛒🛒  Trolley 🛒🛒");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
+        trolleyList = FXCollections.observableArrayList();
+        lvTrolley = new ListView<>(trolleyList);
+        lbTrolleyTotal = new Label("Total: £0.00");
+        lbTrolleyTotal.setStyle(UIStyle.labelStyle);
+        lvTrolley.setPrefHeight(350);
+        lvTrolley.setPrefWidth(COLUMN_WIDTH + 20);
+        lvTrolley.setStyle(UIStyle.listViewStyle);
 
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
