@@ -148,6 +148,9 @@ public class CustomerView  {
         obrLvProducts.setPrefHeight(HEIGHT - 100);
         obrLvProducts.setFixedCellSize(50);
         obrLvProducts.setStyle(UIStyle.listViewStyle);
+        // start with message card only
+        obrLvProducts.setVisible(false);
+        obrLvProducts.setManaged(false);
         return vbSearchPage;
     }
 
