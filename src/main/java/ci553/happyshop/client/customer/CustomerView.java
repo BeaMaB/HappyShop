@@ -78,12 +78,17 @@ public class CustomerView  {
         Label laPageTitle = new Label("Search by Product ID/Name");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
 
-        Label laId = new Label("ID:      ");
-        laId.setStyle(UIStyle.labelStyle);
-        tfId = new TextField();
-        tfId.setPromptText("eg. 0001");
-        tfId.setStyle(UIStyle.textFiledStyle);
-        HBox hbId = new HBox(10, laId, tfId);
+        // search Input (can take ID or Name)
+        tfSearchKeyword = new TextField();
+        tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+        tfSearchKeyword.setPromptText("Enter ID or Product Name");
+        tfSearchKeyword.setOnAction(actionEvent -> {
+            try {
+                cusController.doAction("Search");  //pressing enter can also do search
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         Label laName = new Label("Name:");
         laName.setStyle(UIStyle.labelStyle);
