@@ -71,6 +71,8 @@ public class CustomerView  {
         Line line = new Line(0, 0, 0, HEIGHT);
         line.setStrokeWidth(4);
         line.setStroke(Color.PINK);
+        line.setStrokeWidth(2);
+        line.setStroke(Color.BLACK);
         VBox lineContainer = new VBox(line);
         lineContainer.setPrefWidth(4); // Give it some space
         lineContainer.setAlignment(Pos.CENTER);
