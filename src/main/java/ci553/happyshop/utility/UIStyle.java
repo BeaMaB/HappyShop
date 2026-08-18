@@ -100,6 +100,8 @@ public record UIStyle() {
 
     public static final String listViewStyle = "-fx-border-color: #ccc; " +
             "-fx-border-width: 1px; -fx-background-color: white; -fx-font-size: 14px;";
+    public static void setDarkMode(boolean dark) {
+        isDarkMode = dark;
 
     public static final String manageStockChildStyle = "-fx-background-color: lightgrey; " +
             "-fx-border-color: lightgrey; " +
