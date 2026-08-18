@@ -133,13 +133,6 @@ public class CustomerView  {
         HBox hbSummary = new HBox(laSearchSummary);
         hbSummary.setAlignment(Pos.CENTER);
 
-        // Add to Trolley button
-        Button btnAddToTrolley = new Button("Add to Trolley");
-        btnAddToTrolley.setStyle(UIStyle.buttonStyle);
-        btnAddToTrolley.setOnAction(this::buttonClicked);
-
-        HBox hbBtn = new HBox(10, btnAddToTrolley);
-
         ivProduct = new ImageView("imageHolder.jpg");
         ivProduct.setFitHeight(60);
         ivProduct.setFitWidth(60);
