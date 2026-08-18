@@ -199,6 +199,22 @@ public class CustomerView  {
                     // Name and price on the same row
                     HBox topRow = new HBox(15, name, price);
                     topRow.setAlignment(Pos.CENTER_LEFT);
+
+                    // Stock availability
+                    Label stock = new Label();
+
+                    if (product.getStockQuantity() == 0) {
+                        btnBasket.setDisable(true);
+                        stock.setText("⛔ Out of Stock");
+                        stock.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    } else if (product.getStockQuantity() < 20) {
+                        stock.setText("Only " + product.getStockQuantity() + " left");
+                        stock.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    } else {
+                        stock.setText(product.getStockQuantity() + " left");
+                        stock.setStyle("-fx-text-fill: green;");
+                    }
+
                     // arrange all product details horizontally
                     // product information
                     VBox productInfo = new VBox(3, topRow);
