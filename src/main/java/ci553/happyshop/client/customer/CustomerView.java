@@ -180,6 +180,18 @@ public class CustomerView  {
                         // If loading fails, use a default image directly from the resources folder
                         ivPro = new ImageView(new Image("imageHolder.jpg", 50, 45, true, true)); // Directly load from resources
                     }
+
+                    // basket button for adding the selected product directly to the trolley
+                    Button btnBasket = new Button("🛒");
+                    // add the selected product to the trolley when the basket button is clicked
+                    btnBasket.setOnAction(e -> {
+                        try {
+                            cusController.addProductToTrolley(product);
+                        } catch (SQLException | IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
+
                     // Product description
                     Label name = new Label(product.getProductDescription());
                     // Product price
