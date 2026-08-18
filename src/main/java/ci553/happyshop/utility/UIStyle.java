@@ -80,8 +80,11 @@ public record UIStyle() {
     public static String lineStyle;
     public static String detailAreaStyle;
 
-    public static final String rootStyleYellow = "-fx-padding: 8px; " +
-            "-fx-background-color: lightyellow";
+    // Corner Radius Variable
+    private static final String ROUND_CORNER = " -fx-background-radius: 25; -fx-border-radius: 25; ";
+    private static final String BTN_PADDING = " -fx-padding: 8 22 8 22; ";
+    // Font Style Variable
+    private static final String FONT_MAIN = "-fx-font-family: 'Muli Black'; ";
 
     public static final String textFiledStyle = "-fx-font-size: 16";
 
