@@ -456,7 +456,7 @@ public class CustomerView  {
                 }
                 return;
             }
-            if(action.equals("OK & Close")){
+            if(action.equals("Ok & Close")){
                 showTrolleyOrReceiptPage(vbTrolleyPage);
             }
             cusController.doAction(action);
