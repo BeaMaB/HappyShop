@@ -220,7 +220,7 @@ public class CustomerView  {
                     VBox productInfo = new VBox(3, topRow, stock);
                     productInfo.setAlignment(Pos.CENTER_LEFT);
                     // arrange the image, product information and basket button in one row
-                    HBox hbox = new HBox(10, ivPro, productInfo);
+                    HBox hbox = new HBox(10, ivPro, productInfo, btnBasket);
                     hbox.setAlignment(Pos.CENTER_LEFT);
                     // push the basket button to the far right
                     HBox.setHgrow(productInfo, Priority.ALWAYS);
