@@ -184,6 +184,16 @@ public class CustomerView  {
                     // Name and price on the same row
                     HBox topRow = new HBox(15, name, price);
                     topRow.setAlignment(Pos.CENTER_LEFT);
+                    // arrange all product details horizontally
+                    // product information
+                    VBox productInfo = new VBox(3, topRow);
+                    productInfo.setAlignment(Pos.CENTER_LEFT);
+                    // arrange the image, product information and basket button in one row
+                    HBox hbox = new HBox(10, ivPro, productInfo);
+                    hbox.setAlignment(Pos.CENTER_LEFT);
+                    // push the basket button to the far right
+                    HBox.setHgrow(productInfo, Priority.ALWAYS);
+                    setGraphic(hbox);  // Set the whole row content
                 }
             }
         });
