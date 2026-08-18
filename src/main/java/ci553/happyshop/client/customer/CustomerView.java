@@ -290,6 +290,23 @@ public class CustomerView  {
         }
     }
 
+    // Clears the current product list and displays the default message card
+    // The product list is hidden until the customer performs a search
+    public void showDefaultSearchMessage() {
+
+        obeProductList.clear();
+        HBox defaultCard = new HBox(5, ivProduct, lbProductInfo);
+        defaultCard.setAlignment(Pos.CENTER_LEFT);
+        vbSearchResult.getChildren().setAll(defaultCard);
+
+        // show message card
+        vbSearchResult.setVisible(true);
+        vbSearchResult.setManaged(true);
+
+        // hide product list
+        obrLvProducts.setVisible(false);
+        obrLvProducts.setManaged(false);
+    }
 
     public void update(String imageName, String searchResult, String trolley, String receipt) {
 
