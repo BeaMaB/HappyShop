@@ -48,8 +48,37 @@ public record UIStyle() {
     public static final int EmergencyExitWinWidth = 200;
     public static final int EmergencyExitWinHeight = 325;
 
-    public static final String rootStyleWarehouse = "-fx-padding: 8px; " +
-            "-fx-background-color: lightpink";
+    public static String rootStyle;
+    public static String rootStyleHistory;
+    public static String labelTitleStyle;
+    public static String labelStyle;
+    public static String labelShutdown;
+    public static String labelMulLineStyle;
+    public static String textFiledStyle;
+    public static String historyTextFiledStyle;
+    public static String textAreaStyle;
+    public static String buttonStyle;
+    public static String comboBoxStyle;
+    public static String comboBoxPopupStyle;
+    public static String listViewStyle;
+    public static String receiptPageStyle;
+    public static String greenFillBtnStyle;
+    public static String redFillBtnStyle;
+    public static String greenFillBtnStyle2;
+    public static String redFillBtnStyle2;
+    public static String blueFillBtnStyle;
+    public static String grayFillBtnStyle;
+    public static String buttonFillBtnStyle;
+    public static String exitBtnStyle;
+    public static String manageStockChildStyle;
+    public static String manageStockChildStyle1;
+    public static String cardStyle;
+    public static String alertTitleLabelStyle;
+    public static String alertContentTextAreaStyle;
+    public static String alertContentUserActionStyle;
+    public static String alertBtnStyle;
+    public static String lineStyle;
+    public static String detailAreaStyle;
 
     public static final String rootStyleYellow = "-fx-padding: 8px; " +
             "-fx-background-color: lightyellow";
