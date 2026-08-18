@@ -1,5 +1,7 @@
 package ci553.happyshop.utility;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * UIStyle is a centralized Java record that holds all JavaFX UI-related style and size constants
  * used across all client views in the system.
