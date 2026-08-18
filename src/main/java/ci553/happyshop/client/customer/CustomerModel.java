@@ -62,6 +62,11 @@ public class CustomerModel {
         }
         updateView();
     }
+
+    public Product getTheProduct() {
+        return theProduct;
+    }
+
     public void addToTrolley(Product product) {
         // Loop through the trolley to see if this product was already added before
         if(product!= null){
