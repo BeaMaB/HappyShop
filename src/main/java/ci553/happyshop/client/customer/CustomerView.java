@@ -249,6 +249,16 @@ public class CustomerView  {
         lvTrolley.setPrefWidth(COLUMN_WIDTH + 20);
         lvTrolley.setStyle(UIStyle.listViewStyle);
 
+        lvTrolley.setCellFactory(param -> new ListCell<Product>() {
+            @Override
+            protected void updateItem(Product product, boolean empty) {
+                super.updateItem(product, empty);
+
+                if (empty || product == null) {
+                    setGraphic(null);
+                    return;
+                }
+
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
         taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
