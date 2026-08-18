@@ -64,7 +64,7 @@ public class CustomerView  {
 
     public void start(Stage window) {
         VBox vbSearchPage = createSearchPage();
-        vbTrolleyPage = CreateTrolleyPage();
+        vbTrolleyPage = createTrolleyPage();
         vbReceiptPage = createReceiptPage();
 
         // Create a divider line
