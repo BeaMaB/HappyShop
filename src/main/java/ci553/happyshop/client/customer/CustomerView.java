@@ -259,6 +259,16 @@ public class CustomerView  {
                     return;
                 }
 
+                Label id = new Label(product.getProductId()
+                );
+                Label name = new Label(
+                        product.getProductDescription()
+                );
+
+                Label quantity = new Label(
+                        "Qty: " + product.getOrderedQuantity()
+                );
+
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
         taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
