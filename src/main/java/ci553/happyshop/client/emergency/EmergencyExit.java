@@ -61,7 +61,6 @@ public class EmergencyExit {
         container.getChildren().addAll(btnExit, lblShutdown);
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(btnExit);
 
         borderPane.setStyle(UIStyle.rootStyle);
         // Setting the VBox as the CENTER of the BorderPane
