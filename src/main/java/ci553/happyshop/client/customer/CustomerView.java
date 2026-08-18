@@ -308,7 +308,19 @@ public class CustomerView  {
         obrLvProducts.setManaged(false);
     }
 
-    public void update(String imageName, String searchResult, String trolley, String receipt) {
+    // Displays the products returned from a search
+    // The message card is hidden and the ListView is shown with the search results
+    private void showProductList(ArrayList<Product> products) {
+        obeProductList.clear();
+        obeProductList.addAll(products);
+        // hide message card
+        vbSearchResult.setVisible(false);
+        vbSearchResult.setManaged(false);
+
+        // show product list
+        obrLvProducts.setVisible(true);
+        obrLvProducts.setManaged(true);
+    }
 
         ivProduct.setImage(new Image(imageName));
         lbProductInfo.setText(searchResult);
