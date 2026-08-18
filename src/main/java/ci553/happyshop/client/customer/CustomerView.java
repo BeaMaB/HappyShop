@@ -322,8 +322,20 @@ public class CustomerView  {
         obrLvProducts.setManaged(true);
     }
 
-        ivProduct.setImage(new Image(imageName));
-        lbProductInfo.setText(searchResult);
+    public void update(String imageName, String searchResult, ArrayList<Product> products, String trolley, String receipt) {
+
+        // Update search summary text
+        if (products != null && !products.isEmpty()) {
+            laSearchSummary.setText(products.size() + " products found");
+            showProductList(products);
+        } else {
+            laSearchSummary.setText("0 products found");
+            ivProduct.setImage(new Image(imageName));
+            lbProductInfo.setText(searchResult);
+            showDefaultSearchMessage();
+        }
+
+        // Update trolley display
         taTrolley.setText(trolley);
         if (!receipt.equals("")) {
             showTrolleyOrReceiptPage(vbReceiptPage);
