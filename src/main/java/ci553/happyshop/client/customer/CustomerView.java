@@ -329,10 +329,6 @@ public class CustomerView  {
         hbBtns.setStyle("-fx-padding: 5px;");
         hbBtns.setAlignment(Pos.CENTER);
 
-        vbTrolleyPage = new VBox(15, laPageTitle, hbBtns, lvTrolley, lbTrolleyTotal);
-        vbTrolleyPage.setPrefWidth(COLUMN_WIDTH);
-        vbTrolleyPage.setAlignment(Pos.TOP_CENTER);
-        vbTrolleyPage.setStyle("-fx-padding: 15px;");
         // top bar: title + theme/music buttons
         BorderPane topBar = new BorderPane();
         topBar.setPadding(new Insets(5, 10, 5, 10));
@@ -346,6 +342,15 @@ public class CustomerView  {
 
         // Music button on the right
         topBar.setRight(btnMusicToggle);
+
+        // Main content
+        VBox contentContainer = new VBox(8, topBar, lvTrolley, lbTrolleyTotal, hbBtns);
+        contentContainer.setPrefWidth(COLUMN_WIDTH + 10);
+        contentContainer.setAlignment(Pos.TOP_CENTER);
+        contentContainer.setStyle("-fx-padding: 3px;");
+
+        vbTrolleyPage = contentContainer;
+
         return vbTrolleyPage;
     }
 
