@@ -177,6 +177,11 @@ public class CustomerView  {
             String action = btn.getText();
             if(action.equals("Add to Trolley")){
                 showTrolleyOrReceiptPage(vbTrolleyPage); //ensure trolleyPage shows if the last customer did not close their receiptPage
+                // Add the currently searched product
+                cusController.addProductToTrolley(
+                        cusController.cusModel.getTheProduct()
+                );
+                return;
             }
             if(action.equals("OK & Close")){
                 showTrolleyOrReceiptPage(vbTrolleyPage);
