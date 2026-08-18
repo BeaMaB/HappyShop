@@ -429,8 +429,11 @@ public class CustomerView  {
             showDefaultSearchMessage();
         }
 
-        // Update trolley display
-        taTrolley.setText(trolley);
+        // refresh trolley ListView
+        trolleyList.clear();
+        trolleyList.addAll(trolley);
+        updateTrolleyTotal();
+
         if (!receipt.equals("")) {
             showTrolleyOrReceiptPage(vbReceiptPage);
             taReceipt.setText(receipt);
