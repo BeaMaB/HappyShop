@@ -51,7 +51,7 @@ public class PickerView  {
 
         scene = new Scene(vbOrderMapRoot, WIDTH, HEIGHT);
         window.setScene(scene);
-        window.setTitle("🛒 HappyShop Order Picker");
+        window.setTitle("🛒Order Picker");
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
 
