@@ -37,8 +37,7 @@ public class CustomerView  {
     private VBox vbTrolleyPage;  //vbTrolleyPage and vbReceiptPage will swap with each other when need
     private VBox vbReceiptPage;
 
-    TextField tfId; //for user input on the search page. Made accessible so it can be accessed or modified by CustomerModel
-    TextField tfName; //for user input on the search page. Made accessible so it can be accessed by CustomerModel
+    TextField tfSearchKeyword; // user typing in it (Search for ID and product name)
 
     //four controllers needs updating when program going on
     private ImageView ivProduct; //image area in searchPage
