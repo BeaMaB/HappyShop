@@ -62,10 +62,9 @@ public class CustomerModel {
         }
         updateView();
     }
-
-    void addToTrolley(){
-        if(theProduct!= null){
-
+    public void addToTrolley(Product product) {
+        // Loop through the trolley to see if this product was already added before
+        if(product!= null){
             // trolley.add(theProduct) — Product is appended to the end of the trolley.
             // To keep the trolley organized, add code here or call a method that:
             //TODO
