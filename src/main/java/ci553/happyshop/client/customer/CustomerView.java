@@ -134,7 +134,7 @@ public class CustomerView  {
         HBox hbSummary = new HBox(laSearchSummary);
         hbSummary.setAlignment(Pos.CENTER);
 
-        ivProduct = new ImageView("imageHolder.jpg");
+        ivProduct = new ImageView("SearchItem.png");
         ivProduct.setFitHeight(60);
         ivProduct.setFitWidth(60);
         ivProduct.setPreserveRatio(true); // Image keeps its original shape and fits inside 60×60
@@ -185,7 +185,7 @@ public class CustomerView  {
                         ivPro = new ImageView(new Image(imageFullUri, 50, 45, true, true)); // Attempt to load the product image
                     } catch (Exception e) {
                         // If loading fails, use a default image directly from the resources folder
-                        ivPro = new ImageView(new Image("imageHolder.jpg", 50, 45, true, true)); // Directly load from resources
+                        ivPro = new ImageView(new Image("SearchItem.jpg", 50, 45, true, true)); // Directly load from resources
                     }
 
                     // basket button for adding the selected product directly to the trolley
