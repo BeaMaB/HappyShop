@@ -3,6 +3,7 @@ package ci553.happyshop.client.customer;
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WinPosManager;
 import ci553.happyshop.utility.WindowBounds;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -125,6 +126,7 @@ public class CustomerView  {
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
         vbSearchPage.setStyle("-fx-padding: 15px;");
 
+        obeProductList = FXCollections.observableArrayList();
         return vbSearchPage;
     }
 
