@@ -329,7 +329,7 @@ public class CustomerView  {
         btnCancel.setOnAction(this::buttonClicked);
         btnCancel.setStyle(UIStyle.buttonStyle);
 
-        Button btnCheckout = new Button("Check Out");
+        Button btnCheckout = new Button("Checkout");
         btnCheckout.setOnAction(this::buttonClicked);
         btnCheckout.setStyle(UIStyle.buttonStyle);
 
