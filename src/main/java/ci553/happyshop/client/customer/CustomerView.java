@@ -53,7 +53,9 @@ public class CustomerView  {
     private ImageView ivProduct; //image area in searchPage
     private Label lbProductInfo;//product text info in searchPage
     private Label laSearchSummary; // shows number of products found
-    private TextArea taTrolley; //in trolley Page
+    private ListView<Product> lvTrolley;
+    private ObservableList<Product> trolleyList;
+    private Label lbTrolleyTotal;
     private TextArea taReceipt;//in receipt page
 
     // Holds a reference to this CustomerView window for future access and management
