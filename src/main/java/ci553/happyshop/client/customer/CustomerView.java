@@ -106,6 +106,13 @@ public class CustomerView  {
         HBox searchBox = new HBox(8, tfSearchKeyword, btnSearch);
         searchBox.setAlignment(Pos.CENTER_LEFT);
 
+        // Product found summary (below search bar)
+        laSearchSummary = new Label("Search Summary");
+        laSearchSummary.setStyle(UIStyle.labelStyle);
+
+        HBox hbSummary = new HBox(laSearchSummary);
+        hbSummary.setAlignment(Pos.CENTER);
+
         // Add to Trolley button
         Button btnAddToTrolley = new Button("Add to Trolley");
         btnAddToTrolley.setStyle(UIStyle.buttonStyle);
