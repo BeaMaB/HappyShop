@@ -101,7 +101,7 @@ public class CustomerView  {
     }
 
     private VBox createSearchPage() {
-        Label laPageTitle = new Label("Search by Product ID/Name");
+        Label laPageTitle = new Label("Search Product by ID or Name");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
 
         // search Input (can take ID or Name)
