@@ -217,7 +217,7 @@ public class CustomerView  {
 
                     // arrange all product details horizontally
                     // product information
-                    VBox productInfo = new VBox(3, topRow);
+                    VBox productInfo = new VBox(3, topRow, stock);
                     productInfo.setAlignment(Pos.CENTER_LEFT);
                     // arrange the image, product information and basket button in one row
                     HBox hbox = new HBox(10, ivPro, productInfo);
