@@ -131,10 +131,17 @@ public class CustomerView  {
         lbProductInfo.setMinHeight(Label.USE_PREF_SIZE);  // Allow auto-resize
         lbProductInfo.setStyle(UIStyle.labelMulLineStyle);
 
-        VBox vbSearchPage = new VBox(15, laPageTitle,searchBox, hbBtn, hbSearchResult);
-        vbSearchPage.setPrefWidth(COLUMN_WIDTH);
-        vbSearchPage.setAlignment(Pos.TOP_CENTER);
-        vbSearchPage.setStyle("-fx-padding: 15px;");
+        // Create the default search result card
+        HBox defaultCard = new HBox(5, ivProduct, lbProductInfo);
+        defaultCard.setAlignment(Pos.CENTER_LEFT);
+        defaultCard.setPrefHeight(150);
+        vbSearchResult = new VBox(defaultCard);
+        vbSearchResult.setAlignment(Pos.CENTER);
+
+        vbSearchResult.setPrefHeight(150); // Slightly increased to fit the structured product data nicely
+        vbSearchResult.setMinHeight(150);
+        vbSearchResult.setMaxHeight(150);
+        vbSearchResult.setStyle(UIStyle.labelMulLineStyle);
 
         obeProductList = FXCollections.observableArrayList();
         obrLvProducts = new ListView<>(obeProductList);
