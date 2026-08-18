@@ -35,6 +35,14 @@ public class EmergencyExit {
 
         Button btnExit = new Button();
         btnExit.setGraphic(ivExit);
+
+        // APPLYING MODERN STYLE: Rounded corners, hover color
+        btnExit.setStyle(UIStyle.exitBtnStyle);
+
+        // Simple Hover Effect: Lighten the red when mouse is over it
+        btnExit.setOnMouseEntered(e -> btnExit.setStyle("-fx-background-color: #ff7675; -fx-background-radius: 80; -fx-padding: 20; -fx-cursor: hand;"));
+        btnExit.setOnMouseExited(e -> btnExit.setStyle("-fx-background-color: #F44236; -fx-background-radius: 80; -fx-padding: 20; -fx-cursor: hand;"));
+
         btnExit.setOnAction(event -> {
             Platform.exit(); // Gracefully exit JavaFX
             System.exit(0);//forcefully shut down JVM (in case there are non-JavaFX threads)
