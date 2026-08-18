@@ -61,7 +61,7 @@ public class PickerView  {
         window.setOnCloseRequest(event -> {
             if (!taOrderDetail.getText().equals("")) {
                 event.consume(); // Prevent window from closing
-                laDetailRootTitle.setText("Pls complete the order before closing.");
+                laDetailRootTitle.setText("Please complete the order before closing.");
             }
         });
     }
