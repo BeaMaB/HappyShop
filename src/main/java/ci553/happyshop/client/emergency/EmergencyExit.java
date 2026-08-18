@@ -90,7 +90,7 @@ public class EmergencyExit {
         Scene scene = new Scene(borderPane, WIDTH, HEIGHT);
         Stage window = new Stage();
         window.setScene(scene);
-        window.setTitle("🛒 EXIT");
+        window.setTitle("EXIT");
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
     }
