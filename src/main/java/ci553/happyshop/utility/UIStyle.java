@@ -86,7 +86,13 @@ public record UIStyle() {
     // Font Style Variable
     private static final String FONT_MAIN = "-fx-font-family: 'Muli Black'; ";
 
-    public static final String textFiledStyle = "-fx-font-size: 16";
+    // A list of actions to run when the theme changes
+    private static final List<Runnable> themeListeners = new ArrayList<>();
+    public static void addThemeListener(Runnable r) {
+        if (!themeListeners.contains(r)) {
+            themeListeners.add(r);
+        }
+    }
 
     public static final String labelMulLineStyle= "-fx-font-size: 16px; " +
             "-fx-background-color: lightpink";
