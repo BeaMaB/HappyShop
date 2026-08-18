@@ -92,6 +92,12 @@ public class CustomerView  {
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
         viewWindow=window;// Sets viewWindow to this window for future reference and management.
+        Runnable refreshRootStyles = () -> {
+            hbRoot.setStyle(UIStyle.rootStyle);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     private VBox createSearchPage() {
