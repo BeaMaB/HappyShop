@@ -351,6 +351,34 @@ public class CustomerView  {
 
         vbTrolleyPage = contentContainer;
 
+        // Dark Mode Toggle Button
+        btnDarkMode.setStyle(UIStyle.buttonFillBtnStyle);
+        // Create a function that applies the current styles
+        Runnable refreshStyles = () -> {
+            // 1. Toggle the boolean state in UIStyle
+            // 2. Refresh the UI elements on this page
+            vbTrolleyPage.setStyle(UIStyle.rootStyle);
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            lbProductInfo.setStyle(UIStyle.labelMulLineStyle);
+            lvTrolley.setStyle(UIStyle.listViewStyle);
+            lbTrolleyTotal.setStyle(UIStyle.labelStyle);
+            btnCancel.setStyle(UIStyle.redFillBtnStyle);
+            btnCheckout.setStyle(UIStyle.blueFillBtnStyle);
+            btnMusicToggle.setStyle(UIStyle.buttonFillBtnStyle);
+            // Update the toggle button itself
+            btnDarkMode.setText(UIStyle.isDarkMode ? "☀️ Light" : "🌙 Dark");
+            btnDarkMode.setStyle(UIStyle.buttonFillBtnStyle);
+        };
+
+        // Set the Dark Mode Action (Only once!)
+        btnDarkMode.setOnAction(e -> {
+            UIStyle.setDarkMode(!UIStyle.isDarkMode); // GLOBAL change
+        });
+
+        // Register this page to the Global Theme Listener
+        UIStyle.addThemeListener(refreshStyles);
+        // Set initial styles
+        refreshStyles.run();
         return vbTrolleyPage;
     }
 
