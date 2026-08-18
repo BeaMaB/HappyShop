@@ -177,6 +177,13 @@ public class CustomerView  {
                         // If loading fails, use a default image directly from the resources folder
                         ivPro = new ImageView(new Image("imageHolder.jpg", 50, 45, true, true)); // Directly load from resources
                     }
+                    // Product description
+                    Label name = new Label(product.getProductDescription());
+                    // Product price
+                    Label price = new Label(String.format("£%.2f", product.getUnitPrice()));
+                    // Name and price on the same row
+                    HBox topRow = new HBox(15, name, price);
+                    topRow.setAlignment(Pos.CENTER_LEFT);
                 }
             }
         });
