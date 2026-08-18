@@ -284,6 +284,10 @@ public class CustomerView  {
                     cusController.increaseQuantity(product);
                 });
 
+                btnMinus.setOnAction(e -> {
+                    cusController.decreaseQuantity(product);
+                });
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setOnAction(this::buttonClicked);
         btnCancel.setStyle(UIStyle.buttonStyle);
