@@ -273,6 +273,10 @@ public class CustomerView  {
                         String.format("£%.2f", product.getUnitPrice() * product.getOrderedQuantity())
                 );
 
+                Button btnPlus = new Button("+");
+                Button btnMinus = new Button("-");
+                Button btnRemove = new Button("\uD83D\uDDD1\uFE0F");
+
         taTrolley = new TextArea();
         taTrolley.setEditable(false);
         taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
