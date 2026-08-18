@@ -400,8 +400,8 @@ public class CustomerView  {
         taReceipt = new TextArea();
         taReceipt.setEditable(false);
         taReceipt.setPrefSize(WIDTH/2, HEIGHT-50);
-
-        Button btnCloseReceipt = new Button("OK & Close"); //btn for closing receipt and showing trolley page
+        taReceipt.setStyle(UIStyle.listViewStyle);
+        Button btnCloseReceipt = new Button("Ok & Close"); //btn for closing receipt and showing trolley page
         btnCloseReceipt.setStyle(UIStyle.buttonStyle);
 
         btnCloseReceipt.setOnAction(this::buttonClicked);
