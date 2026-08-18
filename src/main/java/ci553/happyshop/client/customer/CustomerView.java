@@ -128,6 +128,7 @@ public class CustomerView  {
         vbSearchPage.setStyle("-fx-padding: 15px;");
 
         obeProductList = FXCollections.observableArrayList();
+        obrLvProducts = new ListView<>(obeProductList);
         return vbSearchPage;
     }
 
