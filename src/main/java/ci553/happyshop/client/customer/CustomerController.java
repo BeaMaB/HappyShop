@@ -1,5 +1,6 @@
 package ci553.happyshop.client.customer;
 
+import ci553.happyshop.catalogue.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -10,9 +11,6 @@ public class CustomerController {
         switch (action) {
             case "Search":
                 cusModel.search();
-                break;
-            case "Add to Trolley":
-                cusModel.addToTrolley();
                 break;
             case "Cancel":
                 cusModel.cancel();
@@ -25,5 +23,9 @@ public class CustomerController {
                 break;
         }
     }
-
+    // add the product selected by the customer into the trolley
+    // the selected Product object is passed from the CustomerView to the Model
+    public void addProductToTrolley(Product product) throws SQLException, IOException {
+        cusModel.addToTrolley(product);
+    }
 }
