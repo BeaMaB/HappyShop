@@ -239,7 +239,20 @@ public class CustomerView  {
         VBox vbSearchPage = new VBox(15, laPageTitle, searchBox, hbSummary, vbSearchResult, obrLvProducts);
         vbSearchPage.setPrefWidth(COLUMN_WIDTH);
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
-        vbSearchPage.setStyle("-fx-padding: 15px;");
+        vbSearchPage.setStyle("-fx-padding: 4px;");
+
+        Runnable refreshSearchStyles = () -> {
+            vbSearchPage.setStyle("-fx-padding: 4px;");
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+            laSearchSummary.setStyle(UIStyle.labelStyle);
+            vbSearchResult.setStyle(UIStyle.cardStyle);
+            btnSearch.setStyle(UIStyle.buttonStyle);
+            obrLvProducts.setStyle(UIStyle.listViewStyle);
+        };
+
+        UIStyle.addThemeListener(refreshSearchStyles);
+        refreshSearchStyles.run();
 
         return vbSearchPage;
     }
