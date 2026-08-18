@@ -66,6 +66,10 @@ public class PickerView  {
         });
     }
 
+    private Label laOrderMapRootTitle;
+    private Button btnProgressing;
+    private Button btnCollected;
+
     private VBox createOrderMapRoot() {
         Label laOrderMapRootTitle = new Label("Orders Waiting for Processing");
         laOrderMapRootTitle.setStyle(UIStyle.labelTitleStyle);
