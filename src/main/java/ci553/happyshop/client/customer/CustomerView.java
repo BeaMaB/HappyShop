@@ -324,8 +324,9 @@ public class CustomerView  {
         btnCheckout.setOnAction(this::buttonClicked);
         btnCheckout.setStyle(UIStyle.buttonStyle);
 
-        HBox hbBtns = new HBox(10, btnCancel,btnCheckout);
-        hbBtns.setStyle("-fx-padding: 15px;");
+        Button btnDarkMode = new Button();
+        HBox hbBtns = new HBox(10, btnCancel, btnCheckout);
+        hbBtns.setStyle("-fx-padding: 5px;");
         hbBtns.setAlignment(Pos.CENTER);
 
         vbTrolleyPage = new VBox(15, laPageTitle, hbBtns, lvTrolley, lbTrolleyTotal);
