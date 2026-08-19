@@ -493,7 +493,7 @@ public class WarehouseView  {
         taDescriptionNewPro = new TextArea();
         taDescriptionNewPro.setPrefSize(COLUMN_WIDTH-20, 20);
         taDescriptionNewPro.setWrapText(true);
-        taDescriptionNewPro.setStyle(UIStyle.textFiledStyle);
+        taDescriptionNewPro.setStyle(listViewStyle);
         VBox vbDescription = new VBox(laDes, taDescriptionNewPro);
         vbDescription.setAlignment(Pos.CENTER_LEFT);
 
