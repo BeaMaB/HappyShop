@@ -257,6 +257,16 @@ public class WarehouseView  {
         vbSearchPage.setPrefWidth(COLUMN_WIDTH-10);
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
 
+        UIStyle.addThemeListener(() -> {
+            laTitle.setStyle(UIStyle.labelTitleStyle);
+            laSearchSummary.setStyle(UIStyle.labelStyle);
+            tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+            btnSearch.setStyle(UIStyle.buttonStyle);
+            btnDelete.setStyle(UIStyle.redFillBtnStyle);
+            btnEdit.setStyle(UIStyle.greenFillBtnStyle);
+            obrLvProducts.setStyle(UIStyle.listViewStyle);
+        });
+
         return vbSearchPage;
 
         /** NOTE for make image
