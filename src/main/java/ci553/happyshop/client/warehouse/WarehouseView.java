@@ -305,6 +305,18 @@ public class WarehouseView  {
             }
         });
 
+        Runnable refreshStyles = () -> {
+            // 1. Update the main container and the ComboBox button
+            vbProductFormPage.setStyle(UIStyle.rootStyle);
+            cbProductFormMode.setStyle(UIStyle.comboBoxStyle);
+            // 2. Re-apply the popup style (Required for the dropdown to stay rounded)
+            cbProductFormMode.getStylesheets().clear();
+            cbProductFormMode.getStylesheets().add(UIStyle.comboBoxPopupStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
+
         vbProductFormPage.setPrefWidth(COLUMN_WIDTH+20);
         vbProductFormPage.setAlignment(Pos.TOP_CENTER);
         return vbProductFormPage;
