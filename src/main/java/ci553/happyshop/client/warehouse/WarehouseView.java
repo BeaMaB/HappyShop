@@ -419,7 +419,26 @@ public class WarehouseView  {
 
         // Main Layout
         VBox vbEditStockChild = new VBox(10, hbIdPriceImage, hbStock, vbDescription, hbOkCancelBtns);
-        vbEditStockChild.setStyle(UIStyle.manageStockChildStyle);
+        vbEditStockChild.setStyle(cardStyle);
+
+        // Dark mode
+        UIStyle.addThemeListener(() -> {
+            laId.setStyle(UIStyle.labelStyle);
+            laPrice.setStyle(UIStyle.labelStyle);
+            laStock.setStyle(UIStyle.labelStyle);
+            laDes.setStyle(UIStyle.labelStyle);
+            tfIdEdit.setStyle(UIStyle.textFiledStyle);
+            tfPriceEdit.setStyle(UIStyle.textFiledStyle);
+            tfStockEdit.setStyle(UIStyle.textFiledStyle);
+            tfChangeByEdit.setStyle(UIStyle.textFiledStyle);
+            taDescriptionEdit.setStyle(UIStyle.listViewStyle);
+
+            btnAdd.setStyle(UIStyle.greenFillBtnStyle2);
+            btnSub.setStyle(UIStyle.redFillBtnStyle2);
+            btnCancelEdit.setStyle(UIStyle.redFillBtnStyle);
+            btnSubmitEdit.setStyle(UIStyle.blueFillBtnStyle);
+            vbEditStockChild.setStyle(UIStyle.cardStyle);
+        });
         return vbEditStockChild;
     }
 
