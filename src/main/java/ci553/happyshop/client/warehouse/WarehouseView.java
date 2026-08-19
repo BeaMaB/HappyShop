@@ -349,8 +349,8 @@ public class WarehouseView  {
 
         // Product Image
         ivProEdit = new ImageView("WarehouseImageHolder.jpg");
-        ivProEdit.setFitWidth(100);
-        ivProEdit.setFitHeight(70);
+        ivProEdit.setFitWidth(140);
+        ivProEdit.setFitHeight(90);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
         ivProEdit.setSmooth(true);//make it smooth and nice-looking
 
