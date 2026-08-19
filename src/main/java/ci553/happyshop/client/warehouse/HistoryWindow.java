@@ -62,7 +62,7 @@ public class HistoryWindow {
 
         window = new Stage();
         window.setScene(scene);
-        window.setTitle("\uD83C\uDFEC Warehouse Management History"); // for icon 🏬
+        window.setTitle("Warehouse Management History");
         window.show();
         //get the bounds of warehouse window which trigers the history window
         //so that we can put the history window next to the warehouse window
