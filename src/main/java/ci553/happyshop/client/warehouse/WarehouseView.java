@@ -146,7 +146,7 @@ public class WarehouseView  {
 
         //top level layout manager
         HBox hbRoot = new HBox(15, vbSearchPage, lineContainer, vbProductFormPage);
-        hbRoot.setStyle(UIStyle.rootStyleWarehouse);
+        hbRoot.setStyle(UIStyle.rootStyle);
 
         Scene scene = new Scene(hbRoot, WIDTH, HEIGHT);
         window.setScene(scene);
