@@ -32,7 +32,7 @@ public class OrderTracker {
     private Label laTitle;
      //Constructor initializes the UI, a title Label, and a TextArea for displaying the order details.
     public OrderTracker() {
-        Label laTitle = new Label("Order_ID,  State");
+        laTitle = new Label("Order ID Tracker");
         laTitle.setStyle(UIStyle.labelTitleStyle);
 
         taDisplay = new TextArea();
