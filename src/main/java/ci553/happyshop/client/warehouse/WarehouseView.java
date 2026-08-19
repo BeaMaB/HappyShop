@@ -279,6 +279,8 @@ public class WarehouseView  {
     private VBox createProductFormPage() {
         cbProductFormMode = new ComboBox<>();
         cbProductFormMode.setStyle(UIStyle.comboBoxStyle);
+        // Precise CSS for rounded corners on the popup
+        cbProductFormMode.getStylesheets().add(UIStyle.comboBoxPopupStyle);
         cbProductFormMode.getItems().addAll("Edit Existing Product in Stock", "Add New Product to Stock");
         // Set default selected value, so only when value changed trigger setOnAction
         cbProductFormMode.setValue("Edit Existing Product in Stock");
