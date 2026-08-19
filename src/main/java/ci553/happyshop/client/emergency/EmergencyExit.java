@@ -43,9 +43,37 @@ public class EmergencyExit {
         // APPLYING MODERN STYLE: Rounded corners, hover color
         btnExit.setStyle(UIStyle.exitBtnStyle);
 
-        // Simple Hover Effect: Lighten the red when mouse is over it
-        btnExit.setOnMouseEntered(e -> btnExit.setStyle("-fx-background-color: #ff7675; -fx-background-radius: 80; -fx-padding: 20; -fx-cursor: hand;"));
-        btnExit.setOnMouseExited(e -> btnExit.setStyle("-fx-background-color: #F44236; -fx-background-radius: 80; -fx-padding: 20; -fx-cursor: hand;"));
+        // Hover Effects:
+        btnExit.setOnMouseEntered(e -> {
+        if (UIStyle.isDarkMode) {
+            // DARK MODE hover
+            btnExit.setStyle(
+                    "-fx-background-color: #333333;" +
+                            "-fx-background-radius: 80;" +
+                            "-fx-padding: 20;" +
+                            "-fx-border-radius: 80;" +
+                            "-fx-border-color: #F44236;" +
+                            "-fx-border-width: 4;" +
+                            "-fx-cursor: hand;"
+            );
+        } else {
+            // LIGHT MODE hover
+            btnExit.setStyle(
+                    "-fx-background-color: #ff7675;" +
+                            "-fx-background-radius: 80;" +
+                            "-fx-padding: 20;" +
+                            "-fx-border-radius: 80;" +
+                            "-fx-border-color: #F44236;" +
+                            "-fx-border-width: 4;" +
+                            "-fx-cursor: hand;"
+            );
+        }
+        });
+
+        btnExit.setOnMouseExited(e -> {
+            // Return to the normal style for the current theme
+            btnExit.setStyle(UIStyle.exitBtnStyle);
+        });
 
         btnExit.setOnAction(event -> {
             Platform.exit(); // Gracefully exit JavaFX
