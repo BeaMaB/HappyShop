@@ -363,6 +363,8 @@ public class WarehouseView  {
 
         // Editing stock
         Label laStock = new Label("Stock"+" ".repeat(3));
+        Label laStock = new Label("Stock");
+        laStock.setMinWidth(35);
         laStock.setStyle(UIStyle.labelStyle);
 
         // TextField current stock
