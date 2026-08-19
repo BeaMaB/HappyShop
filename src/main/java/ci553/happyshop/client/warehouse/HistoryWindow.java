@@ -40,6 +40,19 @@ public class HistoryWindow {
         taHistory.setStyle(UIStyle.textFiledStyle);
         VBox vbHistory = new VBox(taHistory);
         scene = new Scene(vbHistory,WIDTH,HEIGHT);
+        scene = new Scene(vbHistory, WIDTH, HEIGHT);
+        vbHistory.setPadding(new Insets(15)); // Padding from window border
+        vbHistory.setAlignment(Pos.CENTER); // Center the TextArea
+        VBox.setVgrow(taHistory, Priority.ALWAYS);
+        vbHistory.setStyle(UIStyle.rootStyleHistory);
+
+        Runnable refreshRootStyles = () -> {
+            taHistory.setStyle(UIStyle.historyTextFiledStyle);
+            scene.getRoot().setStyle(UIStyle.rootStyleHistory);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     // Create the window only when needed (i.e., when the window is not created or closed by user but we need it again)
