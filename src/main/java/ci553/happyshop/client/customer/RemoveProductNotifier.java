@@ -97,7 +97,7 @@ public class RemoveProductNotifier {
 
         window = new Stage();
         window.initModality(Modality.NONE); //Optional: explicitly set as non-blocking, though this is the default
-        window.setTitle("🛒Products removal notifier");
+        window.setTitle("🛒Product Removal Notifier");
         window.setScene(scene);
 
         //get bounds of betterCustomer window which trigers the ProductRemovalNotifier
