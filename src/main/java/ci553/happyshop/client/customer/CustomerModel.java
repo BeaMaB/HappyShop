@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,15 +63,44 @@ public class CustomerModel {
         updateView();
     }
 
-    void addToTrolley(){
-        if(theProduct!= null){
+    public Product getTheProduct() {
+        return theProduct;
+    }
 
+    public void addToTrolley(Product product) {
+        // Loop through the trolley to see if this product was already added before
+        if(product!= null){
             // trolley.add(theProduct) — Product is appended to the end of the trolley.
             // To keep the trolley organized, add code here or call a method that:
             //TODO
             // 1. Merges items with the same product ID (combining their quantities).
             // 2. Sorts the products in the trolley by product ID.
-            trolley.add(theProduct);
+            boolean merged = false;
+            // Merge duplicate products (same product ID)
+            // Loop through the trolley to see if this product was already added before
+            for (Product p : trolley) {
+                // if the ID matches, increase the quantity instead of creating a new row
+                if (p.getProductId().equals(product.getProductId())) {
+                    p.setOrderedQuantity(p.getOrderedQuantity() + 1);
+                    merged = true;
+                    break;
+                }
+            }
+            // if product not already in trolley
+            if (!merged) {
+                // Create a new Product object so its orderedQuantity is independent of the search result
+                Product productForTrolley = new Product(
+                        product.getProductId(),
+                        product.getProductDescription(),
+                        product.getProductImageName(),
+                        product.getUnitPrice(),
+                        product.getStockQuantity()
+                );
+                productForTrolley.setOrderedQuantity(1);
+                trolley.add(productForTrolley);
+            }
+            // Sort trolley by product ID (ascending)
+            Collections.sort(trolley);
             displayTaTrolley = ProductListFormatter.buildString(trolley); //build a String for trolley so that we can show it
         }
         else{
@@ -88,8 +118,7 @@ public class CustomerModel {
             // If any products are insufficient, the update will be rolled back.
             // If all products are sufficient, the database will be updated, and insufficientProducts will be empty.
             // Note: If the trolley is already organized (merged and sorted), grouping is unnecessary.
-            ArrayList<Product> groupedTrolley= groupProductsById(trolley);
-            ArrayList<Product> insufficientProducts= databaseRW.purchaseStocks(groupedTrolley);
+            ArrayList<Product> insufficientProducts= databaseRW.purchaseStocks(trolley);
 
             if(insufficientProducts.isEmpty()){ // If stock is sufficient for all products
                 //get OrderHub and tell it to make a new Order
