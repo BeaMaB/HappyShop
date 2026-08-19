@@ -197,7 +197,7 @@ public class WarehouseView  {
         btnEdit.setOnAction(this::buttonClick);
 
         Button btnDelete = new Button("Delete");
-        btnDelete.setStyle(UIStyle.grayFillBtnStyle);
+        btnDelete.setStyle(UIStyle.redFillBtnStyle);
         btnDelete.setOnAction(this::buttonClick);
 
         HBox hbLaBtns = new HBox(10, laSearchSummary, btnEdit,btnDelete);
