@@ -13,6 +13,7 @@ module ci553.happyshop {
     opens ci553.happyshop.client.orderTracker;
     opens ci553.happyshop.client.warehouse;
     opens ci553.happyshop.client.emergency;
+    opens ci553.happyshop.client.soundmanager to javafx.fxml;
 
     exports ci553.happyshop;
     exports ci553.happyshop.client;
@@ -21,5 +22,5 @@ module ci553.happyshop {
     exports ci553.happyshop.client.orderTracker;
     exports ci553.happyshop.client.emergency;
     exports ci553.happyshop.systemSetup;
-
+    exports ci553.happyshop.client.soundmanager;
 }
