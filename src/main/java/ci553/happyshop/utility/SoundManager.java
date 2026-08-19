@@ -75,7 +75,7 @@ public class SoundManager {
                 });
 
             } else {
-                System.out.println("Audio Error: exit_system.mp3 file not found!");
+                System.out.println("Audio Error: exit_sound.mp3 file not found!");
                 javafx.application.Platform.exit();
                 System.exit(0);
             }
