@@ -1,5 +1,6 @@
 package ci553.happyshop.client.warehouse;
 
+import ci553.happyshop.utility.SoundManager;
 import ci553.happyshop.catalogue.Product;
 import ci553.happyshop.utility.StorageLocation;
 import ci553.happyshop.utility.UIStyle;
@@ -185,7 +186,10 @@ public class WarehouseView  {
             }
         });
         Button btnSearch = new Button("Search");
-        btnSearch.setOnAction(this::buttonClick);
+        btnSearch.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
         btnSearch.setStyle(UIStyle.buttonStyle);
         HBox hbSearch = new HBox(10, tfSearchKeyword, btnSearch);
         hbSearch.setAlignment(Pos.CENTER);
@@ -194,11 +198,17 @@ public class WarehouseView  {
         laSearchSummary.setStyle(UIStyle.labelStyle);
         Button btnEdit = new Button("Edit");
         btnEdit.setStyle(UIStyle.greenFillBtnStyle);
-        btnEdit.setOnAction(this::buttonClick);
+        btnEdit.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         Button btnDelete = new Button("Delete");
         btnDelete.setStyle(UIStyle.redFillBtnStyle);
-        btnDelete.setOnAction(this::buttonClick);
+        btnDelete.setOnAction(e -> {
+            SoundManager.playTrashClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         HBox hbLaBtns = new HBox(10, laSearchSummary, btnEdit,btnDelete);
         hbLaBtns.setAlignment(Pos.CENTER);
@@ -380,12 +390,18 @@ public class WarehouseView  {
         btnAdd = new Button("+");
         btnAdd.setStyle(UIStyle.greenFillBtnStyle2);
         btnAdd.setPrefWidth(40);
-        btnAdd.setOnAction(this::buttonClick);
+        btnAdd.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         btnSub = new Button("-");
         btnSub.setStyle(UIStyle.redFillBtnStyle2);
         btnSub.setPrefWidth(40);
-        btnSub.setOnAction(this::buttonClick);
+        btnSub.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         //Hbox for all things related to edit stock
         HBox hbStock = new HBox(10, laStock, tfStockEdit,tfChangeByEdit, btnAdd,btnSub);
@@ -405,12 +421,18 @@ public class WarehouseView  {
         btnCancelEdit = new Button("Cancel");
         btnCancelEdit.setStyle(UIStyle.redFillBtnStyle);
         btnCancelEdit.setPrefWidth(100);
-        btnCancelEdit.setOnAction(this::buttonClick);
+        btnCancelEdit.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         btnSubmitEdit = new Button("Submit");
         btnSubmitEdit.setStyle(UIStyle.blueFillBtnStyle);
         btnSubmitEdit.setPrefWidth(100);
-        btnSubmitEdit.setOnAction(this::buttonClick);
+        btnSubmitEdit.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         // HBox for OK & Cancel Buttons
         HBox hbOkCancelBtns = new HBox(15, btnCancelEdit, btnSubmitEdit);
@@ -501,12 +523,19 @@ public class WarehouseView  {
         Button btnClear = new Button("Cancel");
         btnClear.setStyle(UIStyle.redFillBtnStyle);
         btnClear.setPrefWidth(100);
-        btnClear.setOnAction(this::buttonClick);
+        btnClear.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
 
         Button btnAddNewPro = new Button("Submit");
         btnAddNewPro.setStyle(UIStyle.blueFillBtnStyle);
         btnAddNewPro.setPrefWidth(100);
-        btnAddNewPro.setOnAction(this::buttonClick);
+        btnAddNewPro.setOnAction(e -> {
+            SoundManager.playClick(); // Play sound
+            this.buttonClick(e);     // Run logic
+        });
+
         // HBox for OK & clear Buttons
         HBox hbOkCancelBtns = new HBox(15, btnClear, btnAddNewPro);
         hbOkCancelBtns.setAlignment(Pos.CENTER);
