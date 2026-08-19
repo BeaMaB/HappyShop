@@ -150,8 +150,8 @@ public class WarehouseView  {
 
         Scene scene = new Scene(hbRoot, WIDTH, 325);
         window.setScene(scene);
-        window.setTitle("Search_Page  🛒🛒HappyShop_Warehouse🛒🛒  ProductForm_Page(Edit & AddNew Product)");
-        WinPosManager.registerWindow(window,WIDTH,HEIGHT); // Registers the window with WinPosManager to
+        window.setTitle("HappyShop Warehouse");
+        WinPosManager.registerWindow(window, WIDTH, 325); // Registers the window with WinPosManager to
         // dynamically position itself based on its size, and any already displayed windows.
         window.show();
         viewWindow = window; // Sets the global viewWindow reference to this window for future reference and management.
