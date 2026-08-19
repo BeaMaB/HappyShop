@@ -50,4 +50,39 @@ public class SoundManager {
             System.out.println("Click Sound Error: " + e.getMessage());
         }
     }
+    // method for the exit sound button
+    public static void playExitSound() {
+        try {
+            URL resource = SoundManager.class.getResource("/exit_sound.mp3");
+            if (resource != null) {
+                MediaPlayer exitPlayer = new MediaPlayer(new Media(resource.toExternalForm()));
+                exitPlayer.setVolume(0.8);
+
+                // Stop background music immediately
+                if (SoundManager.backgroundMusic != null) {
+                    SoundManager.backgroundMusic.stop();
+                }
+
+                // wait until the player is fully loaded and ready
+                exitPlayer.setOnReady(() -> {
+                    exitPlayer.play();
+                });
+
+                // Shut down only when the audio file finishes playing completely
+                exitPlayer.setOnEndOfMedia(() -> {
+                    javafx.application.Platform.exit();
+                    System.exit(0);
+                });
+
+            } else {
+                System.out.println("Audio Error: exit_system.mp3 file not found!");
+                javafx.application.Platform.exit();
+                System.exit(0);
+            }
+        } catch (Exception e) {
+            System.out.println("Exit Sound Playback Exception: " + e.getMessage());
+            javafx.application.Platform.exit();
+            System.exit(0);
+        }
+    }
 }
