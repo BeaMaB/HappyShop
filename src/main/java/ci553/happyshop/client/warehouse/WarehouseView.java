@@ -169,7 +169,7 @@ public class WarehouseView  {
     }
 
     private VBox createSearchPage() {
-        Label laTitle = new Label("Search by product ID/Name");
+        Label laTitle = new Label("Search Product by ID or Name");
         laTitle.setStyle(UIStyle.labelTitleStyle);
 
         tfSearchKeyword = new TextField();
