@@ -1,5 +1,6 @@
 package ci553.happyshop.client.warehouse;
 
+import ci553.happyshop.utility.SoundManager;
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WindowBounds;
 import javafx.geometry.Pos;
@@ -70,6 +71,7 @@ public class AlertSimulator {
         HBox hbBtnOk = new HBox(btnOk);
         hbBtnOk.setAlignment(Pos.CENTER);
         btnOk.setOnAction(e -> {
+            SoundManager.playClick();
             window.close();
         });
 
