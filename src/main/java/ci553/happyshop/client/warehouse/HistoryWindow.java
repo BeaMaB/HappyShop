@@ -35,7 +35,7 @@ public class HistoryWindow {
     private  void createScene() {
         // a TextArea to show stock management history
         taHistory = new TextArea();
-        taHistory.setPrefSize(150,150);
+        taHistory.setPrefSize(200, 200);
         taHistory.setEditable(false);
         taHistory.setStyle(UIStyle.textFiledStyle);
         VBox vbHistory = new VBox(taHistory);
