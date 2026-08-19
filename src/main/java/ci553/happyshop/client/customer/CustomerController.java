@@ -15,7 +15,7 @@ public class CustomerController {
             case "Cancel":
                 cusModel.cancel();
                 break;
-            case "Check Out":
+            case "Checkout":
                 cusModel.checkOut();
                 break;
             case "OK & Close":
