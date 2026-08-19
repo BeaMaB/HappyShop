@@ -499,7 +499,7 @@ public class WarehouseView  {
 
         // OK & Cancel Buttons
         Button btnClear = new Button("Cancel");
-        btnClear.setStyle(UIStyle.grayFillBtnStyle);
+        btnClear.setStyle(UIStyle.redFillBtnStyle);
         btnClear.setPrefWidth(100);
         btnClear.setOnAction(this::buttonClick);
 
