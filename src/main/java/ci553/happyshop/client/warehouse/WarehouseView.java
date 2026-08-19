@@ -325,7 +325,7 @@ public class WarehouseView  {
 
     private VBox createEditProductChild() {
         //HBox for Id Label and TextField
-        Label laId = new Label("ID"+" ".repeat(8));
+        Label laId = new Label("ID");
         laId.setStyle(UIStyle.labelStyle);
         tfIdEdit = new TextField();
         tfIdEdit.setEditable(false);
@@ -334,7 +334,7 @@ public class WarehouseView  {
         hbId.setAlignment(Pos.CENTER_LEFT);
 
         // HBox for Price Label and TextField
-        Label laPrice = new Label("Price_£");
+        Label laPrice = new Label("Price");
         laPrice.setStyle(UIStyle.labelStyle);
         tfPriceEdit = new TextField();
         tfPriceEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
