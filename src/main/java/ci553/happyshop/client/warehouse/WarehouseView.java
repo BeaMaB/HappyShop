@@ -184,8 +184,7 @@ public class WarehouseView  {
                 throw new RuntimeException(e);
             }
         });
-        Button btnSearch = new Button("🔍");
-        //Button btnSearch = new Button("\uD83D\uDD0D"); // Unicode for 🔍
+        Button btnSearch = new Button("Search");
         btnSearch.setOnAction(this::buttonClick);
         btnSearch.setStyle(UIStyle.buttonStyle);
         HBox hbSearch = new HBox(10, tfSearchKeyword, btnSearch);
