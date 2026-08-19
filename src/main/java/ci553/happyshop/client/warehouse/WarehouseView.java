@@ -202,8 +202,8 @@ public class WarehouseView  {
 
         HBox hbLaBtns = new HBox(10, laSearchSummary, btnEdit,btnDelete);
         hbLaBtns.setAlignment(Pos.CENTER);
-        hbLaBtns.setPadding(new Insets(5)); //setPadding only works on Layout manager
-        //hbLaBtns.setStyle("-fx-padding: 5px;"); //setStyle works on any Node (eg. layout manager, controls)
+        hbLaBtns.setPadding(new Insets(0, 0, 0, 0));
+        hbLaBtns.setStyle("-fx-padding: 5px;"); //setStyle works on any Node (eg. layout manager, controls)
 
         // data, an observable ArrayList, observed by obrLvProducts
         obeProductList = FXCollections.observableArrayList();
