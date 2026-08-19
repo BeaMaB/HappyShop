@@ -53,7 +53,9 @@ public class CustomerView  {
     private ImageView ivProduct; //image area in searchPage
     private Label lbProductInfo;//product text info in searchPage
     private Label laSearchSummary; // shows number of products found
-    private TextArea taTrolley; //in trolley Page
+    private ListView<Product> lvTrolley;
+    private ObservableList<Product> trolleyList;
+    private Label lbTrolleyTotal;
     private TextArea taReceipt;//in receipt page
 
     // Holds a reference to this CustomerView window for future access and management
@@ -178,6 +180,18 @@ public class CustomerView  {
                         // If loading fails, use a default image directly from the resources folder
                         ivPro = new ImageView(new Image("imageHolder.jpg", 50, 45, true, true)); // Directly load from resources
                     }
+
+                    // basket button for adding the selected product directly to the trolley
+                    Button btnBasket = new Button("🛒");
+                    // add the selected product to the trolley when the basket button is clicked
+                    btnBasket.setOnAction(e -> {
+                        try {
+                            cusController.addProductToTrolley(product);
+                        } catch (SQLException | IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
+
                     // Product description
                     Label name = new Label(product.getProductDescription());
                     // Product price
@@ -185,12 +199,28 @@ public class CustomerView  {
                     // Name and price on the same row
                     HBox topRow = new HBox(15, name, price);
                     topRow.setAlignment(Pos.CENTER_LEFT);
+
+                    // Stock availability
+                    Label stock = new Label();
+
+                    if (product.getStockQuantity() == 0) {
+                        btnBasket.setDisable(true);
+                        stock.setText("⛔ Out of Stock");
+                        stock.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    } else if (product.getStockQuantity() < 20) {
+                        stock.setText("Only " + product.getStockQuantity() + " left");
+                        stock.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    } else {
+                        stock.setText(product.getStockQuantity() + " left");
+                        stock.setStyle("-fx-text-fill: green;");
+                    }
+
                     // arrange all product details horizontally
                     // product information
-                    VBox productInfo = new VBox(3, topRow);
+                    VBox productInfo = new VBox(3, topRow, stock);
                     productInfo.setAlignment(Pos.CENTER_LEFT);
                     // arrange the image, product information and basket button in one row
-                    HBox hbox = new HBox(10, ivPro, productInfo);
+                    HBox hbox = new HBox(10, ivPro, productInfo, btnBasket);
                     hbox.setAlignment(Pos.CENTER_LEFT);
                     // push the basket button to the far right
                     HBox.setHgrow(productInfo, Priority.ALWAYS);
@@ -211,10 +241,61 @@ public class CustomerView  {
     private VBox CreateTrolleyPage() {
         Label laPageTitle = new Label("🛒🛒  Trolley 🛒🛒");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
+        trolleyList = FXCollections.observableArrayList();
+        lvTrolley = new ListView<>(trolleyList);
+        lbTrolleyTotal = new Label("Total: £0.00");
+        lbTrolleyTotal.setStyle(UIStyle.labelStyle);
+        lvTrolley.setPrefHeight(350);
+        lvTrolley.setPrefWidth(COLUMN_WIDTH + 20);
+        lvTrolley.setStyle(UIStyle.listViewStyle);
 
-        taTrolley = new TextArea();
-        taTrolley.setEditable(false);
-        taTrolley.setPrefSize(WIDTH/2, HEIGHT-50);
+        lvTrolley.setCellFactory(param -> new ListCell<Product>() {
+            @Override
+            protected void updateItem(Product product, boolean empty) {
+                super.updateItem(product, empty);
+
+                if (empty || product == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                Label id = new Label(product.getProductId()
+                );
+                Label name = new Label(
+                        product.getProductDescription()
+                );
+
+                Label quantity = new Label(
+                        "Qty: " + product.getOrderedQuantity()
+                );
+
+                Label itemTotal = new Label(
+                        String.format("£%.2f", product.getUnitPrice() * product.getOrderedQuantity())
+                );
+
+                Button btnPlus = new Button("+");
+                Button btnMinus = new Button("-");
+                Button btnRemove = new Button("\uD83D\uDDD1\uFE0F");
+
+                btnPlus.setOnAction(e -> {
+                    cusController.increaseQuantity(product);
+                });
+
+                btnMinus.setOnAction(e -> {
+                    cusController.decreaseQuantity(product);
+                });
+
+                btnRemove.setOnAction(e -> {
+                    cusController.removeProduct(product);
+                });
+
+                HBox row = new HBox(5, id, name, quantity, btnMinus, btnPlus, btnRemove, itemTotal);
+                row.setAlignment(Pos.CENTER_LEFT);
+                HBox.setHgrow(name, Priority.ALWAYS);
+                setGraphic(row);
+            }
+        });
+
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setOnAction(this::buttonClicked);
@@ -228,11 +309,22 @@ public class CustomerView  {
         hbBtns.setStyle("-fx-padding: 15px;");
         hbBtns.setAlignment(Pos.CENTER);
 
-        vbTrolleyPage = new VBox(15, laPageTitle, taTrolley, hbBtns);
+        vbTrolleyPage = new VBox(15, laPageTitle, hbBtns, lvTrolley, lbTrolleyTotal);
         vbTrolleyPage.setPrefWidth(COLUMN_WIDTH);
         vbTrolleyPage.setAlignment(Pos.TOP_CENTER);
         vbTrolleyPage.setStyle("-fx-padding: 15px;");
         return vbTrolleyPage;
+    }
+
+    private void updateTrolleyTotal() {
+
+        double total = 0;
+        for (Product p : trolleyList) {
+            total += p.getUnitPrice() * p.getOrderedQuantity();
+        }
+        lbTrolleyTotal.setText(
+                String.format("Total: £%.2f", total)
+        );
     }
 
     private VBox createReceiptPage() {
@@ -323,7 +415,8 @@ public class CustomerView  {
         obrLvProducts.setManaged(true);
     }
 
-    public void update(String imageName, String searchResult, ArrayList<Product> products, String trolley, String receipt) {
+
+    public void update(String imageName, String searchResult, ArrayList<Product> products, ArrayList<Product> trolley, String receipt) {
 
         // Update search summary text
         if (products != null && !products.isEmpty()) {
@@ -336,8 +429,11 @@ public class CustomerView  {
             showDefaultSearchMessage();
         }
 
-        // Update trolley display
-        taTrolley.setText(trolley);
+        // refresh trolley ListView
+        trolleyList.clear();
+        trolleyList.addAll(trolley);
+        updateTrolleyTotal();
+
         if (!receipt.equals("")) {
             showTrolleyOrReceiptPage(vbReceiptPage);
             taReceipt.setText(receipt);

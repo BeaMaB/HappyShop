@@ -109,6 +109,37 @@ public class CustomerModel {
         updateView();
     }
 
+    public void increaseQuantity(Product product) {
+        if (product == null) return;
+
+        product.setOrderedQuantity(product.getOrderedQuantity() + 1);
+
+        displayTaTrolley = ProductListFormatter.buildString(trolley);
+        updateView();
+    }
+
+    public void decreaseQuantity(Product product) {
+        if (product == null) return;
+
+        if (product.getOrderedQuantity() > 1) {
+            product.setOrderedQuantity(product.getOrderedQuantity() - 1);
+        } else {
+            trolley.remove(product);
+        }
+
+        displayTaTrolley = ProductListFormatter.buildString(trolley);
+        updateView();
+    }
+
+    public void removeProduct(Product product) {
+        if (product == null) return;
+
+        trolley.remove(product);
+
+        displayTaTrolley = ProductListFormatter.buildString(trolley);
+        updateView();
+    }
+
     void checkOut() throws IOException, SQLException {
         if(!trolley.isEmpty()){
             // Group the products in the trolley by productId to optimize stock checking
@@ -200,7 +231,7 @@ public class CustomerModel {
         else{
             imageName = "imageHolder.jpg";
         }
-        cusView.update(imageName, displayLaSearchResult, productList, displayTaTrolley,displayTaReceipt);
+        cusView.update(imageName, displayLaSearchResult, productList, trolley, displayTaReceipt);
     }
      // extra notes:
      //Path.toUri(): Converts a Path object (a file or a directory path) to a URI object.

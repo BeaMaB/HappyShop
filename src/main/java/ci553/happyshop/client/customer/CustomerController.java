@@ -28,4 +28,18 @@ public class CustomerController {
     public void addProductToTrolley(Product product) throws SQLException, IOException {
         cusModel.addToTrolley(product);
     }
+    // Increase quantity
+    public void increaseQuantity(Product product) {
+        cusModel.increaseQuantity(product);
+    }
+
+    // Decrease quantity
+    public void decreaseQuantity(Product product) {
+        cusModel.decreaseQuantity(product);
+    }
+
+    // Remove item completely
+    public void removeProduct(Product product) {
+        cusModel.removeProduct(product);
+    }
 }
