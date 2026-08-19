@@ -71,14 +71,14 @@ public class PickerView  {
     private Button btnCollected;
 
     private VBox createOrderMapRoot() {
-        Label laOrderMapRootTitle = new Label("Orders Waiting for Processing");
+        laOrderMapRootTitle = new Label("Orders Waiting for Processing");
         laOrderMapRootTitle.setStyle(UIStyle.labelTitleStyle);
 
         taOrderMap.setEditable(false);
         taOrderMap.setPrefSize(WIDTH, HEIGHT - 100);
         taOrderMap.setStyle(UIStyle.textFiledStyle);
 
-        Button btnProgressing = new Button("Progressing");
+        btnProgressing = new Button("Progressing");
         btnProgressing.setOnAction(this::buttonClicked);
         btnProgressing.setStyle(UIStyle.buttonStyle);
 
@@ -98,7 +98,7 @@ public class PickerView  {
         taOrderDetail.setText("Order details");
         taOrderDetail.setStyle(UIStyle.textFiledStyle);
 
-        Button btnCollected = new Button("Customer Collected");
+        btnCollected = new Button("Customer Collected");
         btnCollected.setOnAction(this::buttonClicked);
         btnCollected.setStyle(UIStyle.buttonStyle);
 
