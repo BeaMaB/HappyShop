@@ -1,8 +1,8 @@
 package ci553.happyshop.client.emergency;
 
+import ci553.happyshop.utility.SoundManager;
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WinPosManager;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -40,6 +40,12 @@ public class EmergencyExit {
         Button btnExit = new Button();
         btnExit.setGraphic(ivExit);
 
+        // plays the new exit sound, disables button to prevent double-clicks
+        btnExit.setOnAction(event -> {
+            btnExit.setDisable(true); // Prevent double-clicks
+            SoundManager.playExitSound(); // Plays sound and exits when finished
+        });
+
         // APPLYING MODERN STYLE: Rounded corners, hover color
         btnExit.setStyle(UIStyle.exitBtnStyle);
 
@@ -73,11 +79,6 @@ public class EmergencyExit {
         btnExit.setOnMouseExited(e -> {
             // Return to the normal style for the current theme
             btnExit.setStyle(UIStyle.exitBtnStyle);
-        });
-
-        btnExit.setOnAction(event -> {
-            Platform.exit(); // Gracefully exit JavaFX
-            System.exit(0);//forcefully shut down JVM (in case there are non-JavaFX threads)
         });
 
         // Create the Shutdown Text
