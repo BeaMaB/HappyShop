@@ -37,7 +37,7 @@ public class HistoryWindow {
         taHistory = new TextArea();
         taHistory.setPrefSize(200, 200);
         taHistory.setEditable(false);
-        taHistory.setStyle(UIStyle.textFiledStyle);
+        taHistory.setStyle(UIStyle.historyTextFiledStyle);
         VBox vbHistory = new VBox(taHistory);
         scene = new Scene(vbHistory,WIDTH,HEIGHT);
         scene = new Scene(vbHistory, WIDTH, HEIGHT);
