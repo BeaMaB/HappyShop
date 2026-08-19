@@ -16,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import ci553.happyshop.utility.SoundManager;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
@@ -121,7 +123,10 @@ public class CustomerView  {
         Button btnSearch = new Button("Search");
         btnSearch.setTooltip(new Tooltip("Search"));
         btnSearch.setStyle(UIStyle.buttonStyle);
-        btnSearch.setOnAction(this::buttonClicked);
+        btnSearch.setOnAction(e -> {
+            SoundManager.playClick();
+            this.buttonClicked(e);
+        });
 
         // Search bar and button together
         HBox searchBox = new HBox(8, tfSearchKeyword, btnSearch);
@@ -192,6 +197,7 @@ public class CustomerView  {
                     Button btnBasket = new Button("🛒");
                     // add the selected product to the trolley when the basket button is clicked
                     btnBasket.setOnAction(e -> {
+                        SoundManager.playClick();
                         try {
                             cusController.addProductToTrolley(product);
                         } catch (SQLException | IOException ex) {
@@ -267,7 +273,18 @@ public class CustomerView  {
         btnMusicToggle.setTooltip(new Tooltip("Toggle Background Music"));
         btnMusicToggle.setStyle(UIStyle.buttonFillBtnStyle);
 
-        btnMusicToggle.setOnAction(this::buttonClicked);
+        btnMusicToggle.setOnAction(e -> {
+            SoundManager.playClick();
+            if (SoundManager.backgroundMusic != null) {
+                if (SoundManager.backgroundMusic.getStatus() == MediaPlayer.Status.PLAYING) {
+                    SoundManager.backgroundMusic.pause();
+                    btnMusicToggle.setText("Music: OFF");
+                } else {
+                    SoundManager.backgroundMusic.play();
+                    btnMusicToggle.setText("Music: ON");
+                }
+            }
+        });
 
         trolleyList = FXCollections.observableArrayList();
         lvTrolley = new ListView<>(trolleyList);
@@ -306,14 +323,17 @@ public class CustomerView  {
                 Button btnRemove = new Button("\uD83D\uDDD1\uFE0F");
 
                 btnPlus.setOnAction(e -> {
+                    SoundManager.playClick();
                     cusController.increaseQuantity(product);
                 });
 
                 btnMinus.setOnAction(e -> {
+                    SoundManager.playClick();
                     cusController.decreaseQuantity(product);
                 });
 
                 btnRemove.setOnAction(e -> {
+                    SoundManager.playTrashClick();
                     cusController.removeProduct(product);
                 });
 
@@ -326,11 +346,17 @@ public class CustomerView  {
 
 
         Button btnCancel = new Button("Cancel");
-        btnCancel.setOnAction(this::buttonClicked);
+        btnCancel.setOnAction(e -> {
+            SoundManager.playClick();   // Play the sound
+            this.buttonClicked(e);      // Run your original add logic
+        });
         btnCancel.setStyle(UIStyle.buttonStyle);
 
         Button btnCheckout = new Button("Checkout");
-        btnCheckout.setOnAction(this::buttonClicked);
+        btnCheckout.setOnAction(e -> {
+            SoundManager.playClick();   // Play the sound
+            this.buttonClicked(e);      // Run your original add logic
+        });
         btnCheckout.setStyle(UIStyle.buttonStyle);
 
         Button btnDarkMode = new Button();
@@ -381,6 +407,7 @@ public class CustomerView  {
 
         // Set the Dark Mode Action (Only once!)
         btnDarkMode.setOnAction(e -> {
+            SoundManager.playClick();
             UIStyle.setDarkMode(!UIStyle.isDarkMode); // GLOBAL change
         });
 
@@ -413,7 +440,10 @@ public class CustomerView  {
         Button btnCloseReceipt = new Button("Ok & Close"); //btn for closing receipt and showing trolley page
         btnCloseReceipt.setStyle(UIStyle.buttonStyle);
 
-        btnCloseReceipt.setOnAction(this::buttonClicked);
+        btnCloseReceipt.setOnAction(e -> {
+            SoundManager.playClick();   // Play the sound
+            this.buttonClicked(e);      // Run your original add logic
+        });
 
         vbReceiptPage = new VBox(15, laPageTitle, taReceipt, btnCloseReceipt);
         vbReceiptPage.setPrefWidth(COLUMN_WIDTH);

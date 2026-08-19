@@ -1,5 +1,6 @@
 package ci553.happyshop.client.picker;
 
+import ci553.happyshop.utility.SoundManager;
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WinPosManager;
 import javafx.event.ActionEvent;
@@ -79,7 +80,11 @@ public class PickerView  {
         taOrderMap.setStyle(UIStyle.listViewStyle);
 
         btnProgressing = new Button("Progressing");
-        btnProgressing.setOnAction(this::buttonClicked);
+        btnProgressing.setOnAction(e -> {
+            SoundManager.playClick();   // Play the sound
+            this.buttonClicked(e);      // Run your original add logic
+        });
+
         btnProgressing.setStyle(UIStyle.buttonStyle);
 
         VBox vbOrdersListRoot = new VBox(15, laOrderMapRootTitle, taOrderMap, btnProgressing);
@@ -99,7 +104,10 @@ public class PickerView  {
         taOrderDetail.setStyle(UIStyle.listViewStyle);
 
         btnCollected = new Button("Customer Collected");
-        btnCollected.setOnAction(this::buttonClicked);
+        btnCollected.setOnAction(e -> {
+            SoundManager.playClick();   // Play the sound
+            this.buttonClicked(e);      // Run your original add logic
+        });
         btnCollected.setStyle(UIStyle.buttonStyle);
 
         VBox vbOrderDetailsRoot = new VBox(15, laDetailRootTitle, taOrderDetail, btnCollected);
