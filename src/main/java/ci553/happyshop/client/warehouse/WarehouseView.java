@@ -329,8 +329,8 @@ public class WarehouseView  {
         laId.setStyle(UIStyle.labelStyle);
         laId.setMinWidth(35);
         tfIdEdit = new TextField();
-        tfIdEdit.setEditable(false);
-        tfIdEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdEdit.setDisable(false);
+        tfIdEdit.setStyle(textFiledStyle);
         HBox hbId = new HBox(10, laId, tfIdEdit);
         hbId.setAlignment(Pos.CENTER_LEFT);
 
