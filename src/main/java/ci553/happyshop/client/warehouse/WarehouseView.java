@@ -369,12 +369,13 @@ public class WarehouseView  {
         // TextField current stock
         tfStockEdit = new TextField();
         tfStockEdit.setEditable(false);
-        tfStockEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 70px;");
+        tfStockEdit.setStyle(textFiledStyle);
 
         // TextField Change By
         tfChangeByEdit = new TextField();
         tfChangeByEdit.setPromptText("change by");
         tfChangeByEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 50px;");
+        tfChangeByEdit.setStyle(textFiledStyle);
 
         // Add and Subtract Buttons for changing stock
         btnAdd = new Button("➕");
