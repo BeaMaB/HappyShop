@@ -377,9 +377,9 @@ public class WarehouseView  {
         tfChangeByEdit.setStyle(textFiledStyle);
 
         // Add and Subtract Buttons for changing stock
-        btnAdd = new Button("➕");
-        btnAdd.setStyle(UIStyle.greenFillBtnStyle);
-        btnAdd.setPrefWidth(35);
+        btnAdd = new Button("+");
+        btnAdd.setStyle(UIStyle.greenFillBtnStyle2);
+        btnAdd.setPrefWidth(40);
         btnAdd.setOnAction(this::buttonClick);
 
         btnSub = new Button("➖");
