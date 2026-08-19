@@ -327,6 +327,7 @@ public class WarehouseView  {
         //HBox for Id Label and TextField
         Label laId = new Label("ID");
         laId.setStyle(UIStyle.labelStyle);
+        laId.setMinWidth(35);
         tfIdEdit = new TextField();
         tfIdEdit.setEditable(false);
         tfIdEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
@@ -336,6 +337,7 @@ public class WarehouseView  {
         // HBox for Price Label and TextField
         Label laPrice = new Label("Price");
         laPrice.setStyle(UIStyle.labelStyle);
+        laPrice.setMinWidth(35);
         tfPriceEdit = new TextField();
         tfPriceEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
         HBox hbPrice = new HBox(10, laPrice, tfPriceEdit);
