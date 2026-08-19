@@ -466,7 +466,6 @@ public class WarehouseView  {
         Label laStock = new Label("Stock");
         laStock.setStyle(UIStyle.labelStyle);
         tfStockNewPro = new TextField();
-        tfStockNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
         laStock.setMinWidth(40);
         tfStockNewPro.setStyle(textFiledStyle);
         HBox hbStock = new HBox(10, laStock, tfStockNewPro);
