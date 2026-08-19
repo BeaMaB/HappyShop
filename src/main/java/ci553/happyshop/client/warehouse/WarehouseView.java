@@ -373,8 +373,7 @@ public class WarehouseView  {
 
         // TextField Change By
         tfChangeByEdit = new TextField();
-        tfChangeByEdit.setPromptText("change by");
-        tfChangeByEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 50px;");
+        tfChangeByEdit.setPromptText("Change by");
         tfChangeByEdit.setStyle(textFiledStyle);
 
         // Add and Subtract Buttons for changing stock
