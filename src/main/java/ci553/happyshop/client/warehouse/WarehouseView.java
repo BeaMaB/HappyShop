@@ -136,9 +136,10 @@ public class WarehouseView  {
         VBox vbProductFormPage = createProductFormPage();
 
         // Divider line between SearchPage and ProductFormPage
-        Line line = new Line(0, 0, 0, HEIGHT);
-        line.setStrokeWidth(4);
-        line.setStroke(Color.LIGHTGREEN);
+        Line line = new Line(0, 0, 0, 500);
+        line.setStrokeWidth(2);
+        line.setStroke(UIStyle.isDarkMode ? Color.WHITE : Color.BLACK);
+
         VBox lineContainer = new VBox(line);
         lineContainer.setPrefWidth(4);
         lineContainer.setAlignment(Pos.CENTER);
