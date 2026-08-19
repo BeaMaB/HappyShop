@@ -52,6 +52,20 @@ public class OrderTracker {
         // Registers the window's position with WinPosManager.
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
+
+        registerDarkModeListener();
+    }
+
+    private void registerDarkModeListener() {
+
+        Runnable refreshStyles = () -> {
+            vbox.setStyle(UIStyle.rootStyle);
+            laTitle.setStyle(UIStyle.labelTitleStyle);
+            taDisplay.setStyle(UIStyle.listViewStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
     }
 
     /**
