@@ -382,9 +382,9 @@ public class WarehouseView  {
         btnAdd.setPrefWidth(40);
         btnAdd.setOnAction(this::buttonClick);
 
-        btnSub = new Button("➖");
-        btnSub.setStyle(UIStyle.redFillBtnStyle);
-        btnSub.setPrefWidth(35);
+        btnSub = new Button("-");
+        btnSub.setStyle(UIStyle.redFillBtnStyle2);
+        btnSub.setPrefWidth(40);
         btnSub.setOnAction(this::buttonClick);
 
         //Hbox for all things related to edit stock
