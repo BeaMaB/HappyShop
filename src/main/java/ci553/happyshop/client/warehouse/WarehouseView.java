@@ -177,7 +177,7 @@ public class WarehouseView  {
         tfSearchKeyword.setPromptText("Enter ID or Product Name");
         tfSearchKeyword.setOnAction(actionEvent -> {
             try {
-                controller.process("🔍");  //pressing enter can also do search
+                controller.process("Search");  //pressing enter can also do search
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
