@@ -148,7 +148,7 @@ public class WarehouseView  {
         HBox hbRoot = new HBox(15, vbSearchPage, lineContainer, vbProductFormPage);
         hbRoot.setStyle(UIStyle.rootStyle);
 
-        Scene scene = new Scene(hbRoot, WIDTH, HEIGHT);
+        Scene scene = new Scene(hbRoot, WIDTH, 325);
         window.setScene(scene);
         window.setTitle("Search_Page  🛒🛒HappyShop_Warehouse🛒🛒  ProductForm_Page(Edit & AddNew Product)");
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); // Registers the window with WinPosManager to
