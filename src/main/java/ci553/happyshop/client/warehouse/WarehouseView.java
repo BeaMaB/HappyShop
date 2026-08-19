@@ -397,13 +397,13 @@ public class WarehouseView  {
         taDescriptionEdit = new TextArea();
         taDescriptionEdit.setPrefSize(COLUMN_WIDTH-20, 20);
         taDescriptionEdit.setWrapText(true);
-        taDescriptionEdit.setStyle(UIStyle.textFiledStyle);
+        taDescriptionEdit.setStyle(listViewStyle);
         VBox vbDescription = new VBox(laDes, taDescriptionEdit);
         vbDescription.setAlignment(Pos.CENTER_LEFT);
 
         // OK & Clear Buttons
         btnCancelEdit = new Button("Cancel");
-        btnCancelEdit.setStyle(UIStyle.grayFillBtnStyle);
+        btnCancelEdit.setStyle(UIStyle.redFillBtnStyle);
         btnCancelEdit.setPrefWidth(100);
         btnCancelEdit.setOnAction(this::buttonClick);
 
