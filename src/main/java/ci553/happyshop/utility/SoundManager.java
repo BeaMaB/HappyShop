@@ -22,4 +22,18 @@ public class SoundManager {
             System.out.println("Audio Error: " + e.getMessage());
         }
     }
+    // The method for button clicks
+    public static void playClick() {
+        try {
+            URL resource = SoundManager.class.getResource("/click_button.mp3");
+            if (resource != null) {
+                // We create a one-time player so music doesn't stop
+                MediaPlayer clickPlayer = new MediaPlayer(new Media(resource.toExternalForm()));
+                clickPlayer.setVolume(0.5);
+                clickPlayer.play();
+            }
+        } catch (Exception e) {
+            System.out.println("Click Sound Error: " + e.getMessage());
+        }
+    }
 }
