@@ -2,8 +2,11 @@ package ci553.happyshop.client.warehouse;
 
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WindowBounds;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
