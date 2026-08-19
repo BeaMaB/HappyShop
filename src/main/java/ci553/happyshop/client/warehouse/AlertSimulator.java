@@ -70,7 +70,7 @@ public class AlertSimulator {
 
         VBox vb = new VBox(2,vbLaTaMsg, hbBtnOk);
         vb.setAlignment(Pos.CENTER);
-        vb.setStyle(UIStyle.rootStyleGray);
+        vb.setStyle(UIStyle.rootStyle);
         scene = new Scene(vb, WIDTH,HEIGHT);
     }
 
