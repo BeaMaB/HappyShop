@@ -42,9 +42,6 @@ public class Main extends Application {
     //starts the system
     @Override
     public void start(Stage window) throws IOException {
-        startCustomerClient();
-        startPickerClient();
-        startOrderTracker();
 
         startCustomerClient();
         startPickerClient();
@@ -54,7 +51,6 @@ public class Main extends Application {
         // (such as OrderTracker and Picker clients) to ensure they are properly registered for receiving updates.
         initializeOrderMap();
 
-        startWarehouseClient();
         startWarehouseClient();
 
         startEmergencyExit();
