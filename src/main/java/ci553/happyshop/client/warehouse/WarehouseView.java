@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
+import static ci553.happyshop.utility.UIStyle.*;
 /**
  * Some emojis used in the UI. If the emoji does not work on your OS,
  * please change them to their unique Unicode codes.
@@ -135,43 +136,55 @@ public class WarehouseView  {
         VBox vbProductFormPage = createProductFormPage();
 
         // Divider line between SearchPage and ProductFormPage
-        Line line = new Line(0, 0, 0, HEIGHT);
-        line.setStrokeWidth(4);
-        line.setStroke(Color.LIGHTGREEN);
+        Line line = new Line(0, 0, 0, 500);
+        line.setStrokeWidth(2);
+        line.setStroke(UIStyle.isDarkMode ? Color.WHITE : Color.BLACK);
+
         VBox lineContainer = new VBox(line);
         lineContainer.setPrefWidth(4);
         lineContainer.setAlignment(Pos.CENTER);
 
         //top level layout manager
         HBox hbRoot = new HBox(15, vbSearchPage, lineContainer, vbProductFormPage);
-        hbRoot.setStyle(UIStyle.rootStyleWarehouse);
+        hbRoot.setStyle(UIStyle.rootStyle);
 
-        Scene scene = new Scene(hbRoot, WIDTH, HEIGHT);
+        Scene scene = new Scene(hbRoot, WIDTH, 325);
         window.setScene(scene);
-        window.setTitle("Search_Page  🛒🛒HappyShop_Warehouse🛒🛒  ProductForm_Page(Edit & AddNew Product)");
-        WinPosManager.registerWindow(window,WIDTH,HEIGHT); // Registers the window with WinPosManager to
+        window.setTitle("HappyShop Warehouse");
+        WinPosManager.registerWindow(window, WIDTH, 325); // Registers the window with WinPosManager to
         // dynamically position itself based on its size, and any already displayed windows.
         window.show();
         viewWindow = window; // Sets the global viewWindow reference to this window for future reference and management.
+
+        scene.getStylesheets().add("data:text/css," + ".combo-box-popup {" + "-fx-background-color: transparent;" + "}" +".combo-box-popup .list-view {" +"-fx-background-radius: 18;" +"-fx-border-radius: 18;" +"-fx-background-color: white;" + "-fx-padding: 5;" + "}" +".combo-box-popup .list-cell {" + "-fx-background-radius: 10;" + "}"
+        );
+
+        Runnable refreshRootStyles = () -> {
+            hbRoot.setStyle(UIStyle.rootStyle);
+            line.setStroke(UIStyle.isDarkMode ? Color.GOLD : Color.BLACK);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     private VBox createSearchPage() {
-        Label laTitle = new Label("Search by product ID/Name");
+        Label laTitle = new Label("Search Product by ID or Name");
         laTitle.setStyle(UIStyle.labelTitleStyle);
 
         tfSearchKeyword = new TextField();
-        tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+        tfSearchKeyword.setStyle(textFiledStyle);
+        tfSearchKeyword.setPromptText("Enter ID or Product Name");
         tfSearchKeyword.setOnAction(actionEvent -> {
             try {
-                controller.process("🔍");  //pressing enter can also do search
+                controller.process("Search");  //pressing enter can also do search
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        Button btnSearch = new Button("🔍");
-        //Button btnSearch = new Button("\uD83D\uDD0D"); // Unicode for 🔍
+        Button btnSearch = new Button("Search");
         btnSearch.setOnAction(this::buttonClick);
         btnSearch.setStyle(UIStyle.buttonStyle);
         HBox hbSearch = new HBox(10, tfSearchKeyword, btnSearch);
@@ -184,13 +197,13 @@ public class WarehouseView  {
         btnEdit.setOnAction(this::buttonClick);
 
         Button btnDelete = new Button("Delete");
-        btnDelete.setStyle(UIStyle.grayFillBtnStyle);
+        btnDelete.setStyle(UIStyle.redFillBtnStyle);
         btnDelete.setOnAction(this::buttonClick);
 
         HBox hbLaBtns = new HBox(10, laSearchSummary, btnEdit,btnDelete);
         hbLaBtns.setAlignment(Pos.CENTER);
-        hbLaBtns.setPadding(new Insets(5)); //setPadding only works on Layout manager
-        //hbLaBtns.setStyle("-fx-padding: 5px;"); //setStyle works on any Node (eg. layout manager, controls)
+        hbLaBtns.setPadding(new Insets(0, 0, 0, 0));
+        hbLaBtns.setStyle("-fx-padding: 5px;"); //setStyle works on any Node (eg. layout manager, controls)
 
         // data, an observable ArrayList, observed by obrLvProducts
         obeProductList = FXCollections.observableArrayList();
@@ -244,6 +257,16 @@ public class WarehouseView  {
         vbSearchPage.setPrefWidth(COLUMN_WIDTH-10);
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
 
+        UIStyle.addThemeListener(() -> {
+            laTitle.setStyle(UIStyle.labelTitleStyle);
+            laSearchSummary.setStyle(UIStyle.labelStyle);
+            tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+            btnSearch.setStyle(UIStyle.buttonStyle);
+            btnDelete.setStyle(UIStyle.redFillBtnStyle);
+            btnEdit.setStyle(UIStyle.greenFillBtnStyle);
+            obrLvProducts.setStyle(UIStyle.listViewStyle);
+        });
+
         return vbSearchPage;
 
         /** NOTE for make image
@@ -256,11 +279,13 @@ public class WarehouseView  {
     private VBox createProductFormPage() {
         cbProductFormMode = new ComboBox<>();
         cbProductFormMode.setStyle(UIStyle.comboBoxStyle);
+        // Precise CSS for rounded corners on the popup
+        cbProductFormMode.getStylesheets().add(UIStyle.comboBoxPopupStyle);
         cbProductFormMode.getItems().addAll("Edit Existing Product in Stock", "Add New Product to Stock");
         // Set default selected value, so only when value changed trigger setOnAction
         cbProductFormMode.setValue("Edit Existing Product in Stock");
 
-        vbEditProduct = createEditProdcutChild();
+        vbEditProduct = createEditProductChild();
         disableEditProductChild(true); //disable editable component until user selects a product and cilck btnEdit
         vbNewProduct = createNewProductChild();
 
@@ -280,27 +305,42 @@ public class WarehouseView  {
             }
         });
 
+        Runnable refreshStyles = () -> {
+            // 1. Update the main container and the ComboBox button
+            vbProductFormPage.setStyle(UIStyle.rootStyle);
+            cbProductFormMode.setStyle(UIStyle.comboBoxStyle);
+            // 2. Re-apply the popup style (Required for the dropdown to stay rounded)
+            cbProductFormMode.getStylesheets().clear();
+            cbProductFormMode.getStylesheets().add(UIStyle.comboBoxPopupStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
+
         vbProductFormPage.setPrefWidth(COLUMN_WIDTH+20);
         vbProductFormPage.setAlignment(Pos.TOP_CENTER);
         return vbProductFormPage;
     }
 
 
-    private VBox createEditProdcutChild() {
+    private VBox createEditProductChild() {
         //HBox for Id Label and TextField
-        Label laId = new Label("ID"+" ".repeat(8));
+        Label laId = new Label("ID");
         laId.setStyle(UIStyle.labelStyle);
+        laId.setMinWidth(35);
         tfIdEdit = new TextField();
-        tfIdEdit.setEditable(false);
-        tfIdEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdEdit.setDisable(false);
+        tfIdEdit.setStyle(textFiledStyle);
         HBox hbId = new HBox(10, laId, tfIdEdit);
         hbId.setAlignment(Pos.CENTER_LEFT);
 
         // HBox for Price Label and TextField
-        Label laPrice = new Label("Price_£");
+        Label laPrice = new Label("Price");
         laPrice.setStyle(UIStyle.labelStyle);
+        laPrice.setMinWidth(35);
         tfPriceEdit = new TextField();
-        tfPriceEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdEdit.setEditable(false);
+        tfPriceEdit.setStyle(textFiledStyle);
         HBox hbPrice = new HBox(10, laPrice, tfPriceEdit);
         hbPrice.setAlignment(Pos.CENTER_LEFT);
 
@@ -308,9 +348,9 @@ public class WarehouseView  {
         VBox vbIdPrice = new VBox(10, hbId, hbPrice);
 
         // Product Image
-        ivProEdit = new ImageView("WarehouseImageHolder.jpg");
-        ivProEdit.setFitWidth(100);
-        ivProEdit.setFitHeight(70);
+        ivProEdit = new ImageView("click_here.png");
+        ivProEdit.setFitWidth(140);
+        ivProEdit.setFitHeight(90);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
         ivProEdit.setSmooth(true);//make it smooth and nice-looking
 
@@ -322,28 +362,29 @@ public class WarehouseView  {
         hbIdPriceImage.setAlignment(Pos.CENTER_LEFT);
 
         // Editing stock
-        Label laStock = new Label("Stock"+" ".repeat(3));
+        Label laStock = new Label("Stock");
+        laStock.setMinWidth(35);
         laStock.setStyle(UIStyle.labelStyle);
 
         // TextField current stock
         tfStockEdit = new TextField();
         tfStockEdit.setEditable(false);
-        tfStockEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 70px;");
+        tfStockEdit.setStyle(textFiledStyle);
 
         // TextField Change By
         tfChangeByEdit = new TextField();
-        tfChangeByEdit.setPromptText("change by");
-        tfChangeByEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 50px;");
+        tfChangeByEdit.setPromptText("Change by");
+        tfChangeByEdit.setStyle(textFiledStyle);
 
         // Add and Subtract Buttons for changing stock
-        btnAdd = new Button("➕");
-        btnAdd.setStyle(UIStyle.greenFillBtnStyle);
-        btnAdd.setPrefWidth(35);
+        btnAdd = new Button("+");
+        btnAdd.setStyle(UIStyle.greenFillBtnStyle2);
+        btnAdd.setPrefWidth(40);
         btnAdd.setOnAction(this::buttonClick);
 
-        btnSub = new Button("➖");
-        btnSub.setStyle(UIStyle.redFillBtnStyle);
-        btnSub.setPrefWidth(35);
+        btnSub = new Button("-");
+        btnSub.setStyle(UIStyle.redFillBtnStyle2);
+        btnSub.setPrefWidth(40);
         btnSub.setOnAction(this::buttonClick);
 
         //Hbox for all things related to edit stock
@@ -356,13 +397,13 @@ public class WarehouseView  {
         taDescriptionEdit = new TextArea();
         taDescriptionEdit.setPrefSize(COLUMN_WIDTH-20, 20);
         taDescriptionEdit.setWrapText(true);
-        taDescriptionEdit.setStyle(UIStyle.textFiledStyle);
+        taDescriptionEdit.setStyle(listViewStyle);
         VBox vbDescription = new VBox(laDes, taDescriptionEdit);
         vbDescription.setAlignment(Pos.CENTER_LEFT);
 
         // OK & Clear Buttons
         btnCancelEdit = new Button("Cancel");
-        btnCancelEdit.setStyle(UIStyle.grayFillBtnStyle);
+        btnCancelEdit.setStyle(UIStyle.redFillBtnStyle);
         btnCancelEdit.setPrefWidth(100);
         btnCancelEdit.setOnAction(this::buttonClick);
 
@@ -378,33 +419,55 @@ public class WarehouseView  {
 
         // Main Layout
         VBox vbEditStockChild = new VBox(10, hbIdPriceImage, hbStock, vbDescription, hbOkCancelBtns);
-        vbEditStockChild.setStyle(UIStyle.manageStockChildStyle);
+        vbEditStockChild.setStyle(cardStyle);
+
+        // Dark mode
+        UIStyle.addThemeListener(() -> {
+            laId.setStyle(UIStyle.labelStyle);
+            laPrice.setStyle(UIStyle.labelStyle);
+            laStock.setStyle(UIStyle.labelStyle);
+            laDes.setStyle(UIStyle.labelStyle);
+            tfIdEdit.setStyle(UIStyle.textFiledStyle);
+            tfPriceEdit.setStyle(UIStyle.textFiledStyle);
+            tfStockEdit.setStyle(UIStyle.textFiledStyle);
+            tfChangeByEdit.setStyle(UIStyle.textFiledStyle);
+            taDescriptionEdit.setStyle(UIStyle.listViewStyle);
+
+            btnAdd.setStyle(UIStyle.greenFillBtnStyle2);
+            btnSub.setStyle(UIStyle.redFillBtnStyle2);
+            btnCancelEdit.setStyle(UIStyle.redFillBtnStyle);
+            btnSubmitEdit.setStyle(UIStyle.blueFillBtnStyle);
+            vbEditStockChild.setStyle(UIStyle.cardStyle);
+        });
         return vbEditStockChild;
     }
 
 
     private VBox createNewProductChild() {
         //HBox for Id Label and TextField
-        Label laId = new Label("ID"+ " ".repeat(9));
+        Label laId = new Label("ID");
         laId.setStyle(UIStyle.labelStyle);
+        laId.setMinWidth(40);
         tfIdNewPro = new TextField();
-        tfIdNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdNewPro.setStyle(textFiledStyle);
         HBox hbId = new HBox(10, laId, tfIdNewPro);
         hbId.setAlignment(Pos.CENTER_LEFT);
 
         // HBox for Price Label and TextField
-        Label laPrice = new Label("Price_£ ");
+        Label laPrice = new Label("Price");
         laPrice.setStyle(UIStyle.labelStyle);
+        laPrice.setMinWidth(40);
         tfPriceNewPro = new TextField();
-        tfPriceNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfPriceNewPro.setStyle(textFiledStyle);
         HBox hbPrice = new HBox(10, laPrice, tfPriceNewPro);
         hbPrice.setAlignment(Pos.CENTER_LEFT);
 
         //  HBox for stock label and textFiled
-        Label laStock = new Label("Stock" +" ".repeat(4));
+        Label laStock = new Label("Stock");
         laStock.setStyle(UIStyle.labelStyle);
         tfStockNewPro = new TextField();
-        tfStockNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        laStock.setMinWidth(40);
+        tfStockNewPro.setStyle(textFiledStyle);
         HBox hbStock = new HBox(10, laStock, tfStockNewPro);
         hbStock.setAlignment(Pos.CENTER_LEFT);
 
@@ -412,9 +475,9 @@ public class WarehouseView  {
         VBox vbIdPriceStock = new VBox(10, hbId, hbPrice,hbStock);
 
         // VBox for Product Image and name keyword
-        ivProNewPro = new ImageView("WarehouseImageHolder.jpg");
-        ivProNewPro.setFitWidth(100);
-        ivProNewPro.setFitHeight(70);
+        ivProNewPro = new ImageView("add_image.png");
+        ivProNewPro.setFitWidth(110);
+        ivProNewPro.setFitHeight(110);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
         ivProEdit.setSmooth(true);//make it smooth and nice-looking
 
@@ -430,13 +493,13 @@ public class WarehouseView  {
         taDescriptionNewPro = new TextArea();
         taDescriptionNewPro.setPrefSize(COLUMN_WIDTH-20, 20);
         taDescriptionNewPro.setWrapText(true);
-        taDescriptionNewPro.setStyle(UIStyle.textFiledStyle);
+        taDescriptionNewPro.setStyle(listViewStyle);
         VBox vbDescription = new VBox(laDes, taDescriptionNewPro);
         vbDescription.setAlignment(Pos.CENTER_LEFT);
 
         // OK & Cancel Buttons
         Button btnClear = new Button("Cancel");
-        btnClear.setStyle(UIStyle.grayFillBtnStyle);
+        btnClear.setStyle(UIStyle.redFillBtnStyle);
         btnClear.setPrefWidth(100);
         btnClear.setOnAction(this::buttonClick);
 
@@ -451,7 +514,23 @@ public class WarehouseView  {
 
         // Main Layout
         VBox vbAddNewProductToStockChild = new VBox(10, hbIdPriceStockImage, vbDescription, hbOkCancelBtns);
-        vbAddNewProductToStockChild.setStyle(UIStyle.manageStockChildStyle1);
+        vbAddNewProductToStockChild.setStyle(cardStyle);
+
+        UIStyle.addThemeListener(() -> {
+            laId.setStyle(UIStyle.labelStyle);
+            laPrice.setStyle(UIStyle.labelStyle);
+            laStock.setStyle(UIStyle.labelStyle);
+            laDes.setStyle(UIStyle.labelStyle);
+            tfIdNewPro.setStyle(textFiledStyle);
+            tfPriceNewPro.setStyle(textFiledStyle);
+            tfStockNewPro.setStyle(textFiledStyle);
+            taDescriptionNewPro.setStyle(listViewStyle);
+
+            btnClear.setStyle(UIStyle.redFillBtnStyle);
+            btnAddNewPro.setStyle(UIStyle.blueFillBtnStyle);
+            vbAddNewProductToStockChild.setStyle(cardStyle);
+        });
+
         return vbAddNewProductToStockChild;
     }
 
@@ -541,7 +620,7 @@ public class WarehouseView  {
             ivProEdit.setImage(new Image(imageUrl));  // Attempt to load the product image
         } catch (Exception e) {
             // If loading fails, use a default image directly from the resources folder
-            ivProEdit.setImage(new Image("imageHolder.jpg"));
+            ivProEdit.setImage(new Image("image_holder.jpg"));
         }
     }
 
@@ -551,7 +630,7 @@ public class WarehouseView  {
         tfStockEdit.setText("");
         tfChangeByEdit.setText("");
         taDescriptionEdit.setText("");
-        ivProEdit.setImage(new Image("WarehouseImageHolder.jpg"));
+        ivProEdit.setImage(new Image("click_here.png"));
         disableEditProductChild(true);
     }
 
@@ -560,7 +639,7 @@ public class WarehouseView  {
        tfPriceNewPro.setText("");
        tfStockNewPro.setText("");
        taDescriptionNewPro.setText("");
-       ivProNewPro.setImage(new Image("WarehouseImageHolder.jpg"));
+       ivProNewPro.setImage(new Image("add_image.png"));
        imageUriNewPro = null; //clear the selcted image
        System.out.println("resetNewProChild in view called");
     }

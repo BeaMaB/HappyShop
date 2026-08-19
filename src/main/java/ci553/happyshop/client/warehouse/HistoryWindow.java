@@ -2,8 +2,11 @@ package ci553.happyshop.client.warehouse;
 
 import ci553.happyshop.utility.UIStyle;
 import ci553.happyshop.utility.WindowBounds;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
@@ -32,11 +35,23 @@ public class HistoryWindow {
     private  void createScene() {
         // a TextArea to show stock management history
         taHistory = new TextArea();
-        taHistory.setPrefSize(150,150);
+        taHistory.setPrefSize(200, 200);
         taHistory.setEditable(false);
-        taHistory.setStyle(UIStyle.textFiledStyle);
+        taHistory.setStyle(UIStyle.historyTextFiledStyle);
         VBox vbHistory = new VBox(taHistory);
-        scene = new Scene(vbHistory,WIDTH,HEIGHT);
+        scene = new Scene(vbHistory, WIDTH, HEIGHT);
+        vbHistory.setPadding(new Insets(15)); // Padding from window border
+        vbHistory.setAlignment(Pos.CENTER); // Center the TextArea
+        VBox.setVgrow(taHistory, Priority.ALWAYS);
+        vbHistory.setStyle(UIStyle.rootStyleHistory);
+
+        Runnable refreshRootStyles = () -> {
+            taHistory.setStyle(UIStyle.historyTextFiledStyle);
+            scene.getRoot().setStyle(UIStyle.rootStyleHistory);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     // Create the window only when needed (i.e., when the window is not created or closed by user but we need it again)
@@ -47,7 +62,7 @@ public class HistoryWindow {
 
         window = new Stage();
         window.setScene(scene);
-        window.setTitle("\uD83C\uDFEC Warehouse Management History"); // for icon 🏬
+        window.setTitle("Warehouse Management History");
         window.show();
         //get the bounds of warehouse window which trigers the history window
         //so that we can put the history window next to the warehouse window

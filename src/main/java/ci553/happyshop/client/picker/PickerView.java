@@ -45,36 +45,46 @@ public class PickerView  {
     public void start(Stage window) {
         vbOrderMapRoot = createOrderMapRoot();
         vbOrderDetailRoot = createOrderDetailRoot();
+
+        vbOrderMapRoot.setStyle(UIStyle.rootStyle);
+        vbOrderDetailRoot.setStyle(UIStyle.rootStyle);
+
         scene = new Scene(vbOrderMapRoot, WIDTH, HEIGHT);
         window.setScene(scene);
-        window.setTitle("🛒 HappyShop Order Picker");
+        window.setTitle("🛒Order Picker");
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
+
+        registerDarkModeListener();
 
         // Set the window close request to prevent closing if the order is not collected
         window.setOnCloseRequest(event -> {
             if (!taOrderDetail.getText().equals("")) {
                 event.consume(); // Prevent window from closing
-                laDetailRootTitle.setText("Pls complete the order before closing.");
+                laDetailRootTitle.setText("Please complete the order before closing.");
             }
         });
     }
 
+    private Label laOrderMapRootTitle;
+    private Button btnProgressing;
+    private Button btnCollected;
+
     private VBox createOrderMapRoot() {
-        Label laOrderMapRootTitle = new Label("Orders Waiting for Processing");
+        laOrderMapRootTitle = new Label("Orders Waiting for Processing");
         laOrderMapRootTitle.setStyle(UIStyle.labelTitleStyle);
 
         taOrderMap.setEditable(false);
         taOrderMap.setPrefSize(WIDTH, HEIGHT - 100);
-        taOrderMap.setStyle(UIStyle.textFiledStyle);
+        taOrderMap.setStyle(UIStyle.listViewStyle);
 
-        Button btnProgressing = new Button("Progressing");
+        btnProgressing = new Button("Progressing");
         btnProgressing.setOnAction(this::buttonClicked);
         btnProgressing.setStyle(UIStyle.buttonStyle);
 
         VBox vbOrdersListRoot = new VBox(15, laOrderMapRootTitle, taOrderMap, btnProgressing);
         vbOrdersListRoot.setAlignment(Pos.TOP_CENTER);
-        vbOrdersListRoot.setStyle(UIStyle.rootStyleYellow);
+        vbOrdersListRoot.setStyle(UIStyle.rootStyle);
 
         return vbOrdersListRoot;
     }
@@ -86,15 +96,15 @@ public class PickerView  {
         taOrderDetail.setEditable(false);
         taOrderDetail.setPrefSize(WIDTH, HEIGHT - 100);
         taOrderDetail.setText("Order details");
-        taOrderDetail.setStyle(UIStyle.textFiledStyle);
+        taOrderDetail.setStyle(UIStyle.listViewStyle);
 
-        Button btnCollected = new Button("Customer Collected");
+        btnCollected = new Button("Customer Collected");
         btnCollected.setOnAction(this::buttonClicked);
         btnCollected.setStyle(UIStyle.buttonStyle);
 
         VBox vbOrderDetailsRoot = new VBox(15, laDetailRootTitle, taOrderDetail, btnCollected);
         vbOrderDetailsRoot.setAlignment(Pos.TOP_CENTER);
-        vbOrderDetailsRoot.setStyle(UIStyle.rootStyleBlue);
+        vbOrderDetailsRoot.setStyle(UIStyle.rootStyle);
 
         return vbOrderDetailsRoot;
     }
@@ -118,6 +128,30 @@ public class PickerView  {
         } catch (IOException e) {
             throw new RuntimeException("Failed to handle button action: " + btnText, e);
         }
+    }
+
+    private void registerDarkModeListener() {
+
+        Runnable refreshStyles = () -> {
+            // Root containers
+            vbOrderMapRoot.setStyle(UIStyle.rootStyle);
+            vbOrderDetailRoot.setStyle(UIStyle.rootStyle);
+
+            // Text areas
+            taOrderMap.setStyle(UIStyle.listViewStyle);
+            taOrderDetail.setStyle(UIStyle.listViewStyle);
+
+            // Titles
+            laOrderMapRootTitle.setStyle(UIStyle.labelTitleStyle);
+            laDetailRootTitle.setStyle(UIStyle.labelTitleStyle);
+
+            // Buttons
+            btnProgressing.setStyle(UIStyle.buttonStyle);
+            btnCollected.setStyle(UIStyle.buttonStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
     }
 
     void update(String strOrderMap, String strOrderDetail) {

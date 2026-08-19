@@ -8,6 +8,7 @@ import ci553.happyshop.utility.WindowBounds;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -64,13 +65,20 @@ public class CustomerView  {
 
     public void start(Stage window) {
         VBox vbSearchPage = createSearchPage();
-        vbTrolleyPage = CreateTrolleyPage();
+        vbTrolleyPage = createTrolleyPage();
         vbReceiptPage = createReceiptPage();
 
         // Create a divider line
         Line line = new Line(0, 0, 0, HEIGHT);
-        line.setStrokeWidth(4);
-        line.setStroke(Color.PINK);
+        line.setStrokeWidth(2);
+        line.setStroke(Color.BLACK);
+
+        Runnable refreshLineStyle = () -> {
+            line.setStroke(UIStyle.isDarkMode ? Color.GOLD : Color.BLACK);
+        };
+
+        UIStyle.addThemeListener(refreshLineStyle);
+        refreshLineStyle.run();
         VBox lineContainer = new VBox(line);
         lineContainer.setPrefWidth(4); // Give it some space
         lineContainer.setAlignment(Pos.CENTER);
@@ -85,10 +93,16 @@ public class CustomerView  {
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
         viewWindow=window;// Sets viewWindow to this window for future reference and management.
+        Runnable refreshRootStyles = () -> {
+            hbRoot.setStyle(UIStyle.rootStyle);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     private VBox createSearchPage() {
-        Label laPageTitle = new Label("Search by Product ID/Name");
+        Label laPageTitle = new Label("Search Product by ID or Name");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
 
         // search Input (can take ID or Name)
@@ -120,14 +134,7 @@ public class CustomerView  {
         HBox hbSummary = new HBox(laSearchSummary);
         hbSummary.setAlignment(Pos.CENTER);
 
-        // Add to Trolley button
-        Button btnAddToTrolley = new Button("Add to Trolley");
-        btnAddToTrolley.setStyle(UIStyle.buttonStyle);
-        btnAddToTrolley.setOnAction(this::buttonClicked);
-
-        HBox hbBtn = new HBox(10, btnAddToTrolley);
-
-        ivProduct = new ImageView("imageHolder.jpg");
+        ivProduct = new ImageView("search_item.png");
         ivProduct.setFitHeight(60);
         ivProduct.setFitWidth(60);
         ivProduct.setPreserveRatio(true); // Image keeps its original shape and fits inside 60×60
@@ -178,7 +185,7 @@ public class CustomerView  {
                         ivPro = new ImageView(new Image(imageFullUri, 50, 45, true, true)); // Attempt to load the product image
                     } catch (Exception e) {
                         // If loading fails, use a default image directly from the resources folder
-                        ivPro = new ImageView(new Image("imageHolder.jpg", 50, 45, true, true)); // Directly load from resources
+                        ivPro = new ImageView(new Image("search_item.jpg", 50, 45, true, true)); // Directly load from resources
                     }
 
                     // basket button for adding the selected product directly to the trolley
@@ -230,17 +237,38 @@ public class CustomerView  {
         });
 
         // Combine everything into the VBox
-        VBox vbSearchPage = new VBox(15, laPageTitle, searchBox, hbBtn, hbSummary, vbSearchResult, obrLvProducts);
+        VBox vbSearchPage = new VBox(15, laPageTitle, searchBox, hbSummary, vbSearchResult, obrLvProducts);
         vbSearchPage.setPrefWidth(COLUMN_WIDTH);
         vbSearchPage.setAlignment(Pos.TOP_CENTER);
-        vbSearchPage.setStyle("-fx-padding: 15px;");
+        vbSearchPage.setStyle("-fx-padding: 4px;");
+
+        Runnable refreshSearchStyles = () -> {
+            vbSearchPage.setStyle("-fx-padding: 4px;");
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+            laSearchSummary.setStyle(UIStyle.labelStyle);
+            vbSearchResult.setStyle(UIStyle.cardStyle);
+            btnSearch.setStyle(UIStyle.buttonStyle);
+            obrLvProducts.setStyle(UIStyle.listViewStyle);
+        };
+
+        UIStyle.addThemeListener(refreshSearchStyles);
+        refreshSearchStyles.run();
 
         return vbSearchPage;
     }
 
-    private VBox CreateTrolleyPage() {
-        Label laPageTitle = new Label("🛒🛒  Trolley 🛒🛒");
+    private VBox createTrolleyPage() {
+        Label laPageTitle = new Label("Trolley");
         laPageTitle.setStyle(UIStyle.labelTitleStyle);
+
+        // Music Toggle Button
+        Button btnMusicToggle = new Button("Music: ON");
+        btnMusicToggle.setTooltip(new Tooltip("Toggle Background Music"));
+        btnMusicToggle.setStyle(UIStyle.buttonFillBtnStyle);
+
+        btnMusicToggle.setOnAction(this::buttonClicked);
+
         trolleyList = FXCollections.observableArrayList();
         lvTrolley = new ListView<>(trolleyList);
         lbTrolleyTotal = new Label("Total: £0.00");
@@ -301,18 +329,65 @@ public class CustomerView  {
         btnCancel.setOnAction(this::buttonClicked);
         btnCancel.setStyle(UIStyle.buttonStyle);
 
-        Button btnCheckout = new Button("Check Out");
+        Button btnCheckout = new Button("Checkout");
         btnCheckout.setOnAction(this::buttonClicked);
         btnCheckout.setStyle(UIStyle.buttonStyle);
 
-        HBox hbBtns = new HBox(10, btnCancel,btnCheckout);
-        hbBtns.setStyle("-fx-padding: 15px;");
+        Button btnDarkMode = new Button();
+        HBox hbBtns = new HBox(10, btnCancel, btnCheckout);
+        hbBtns.setStyle("-fx-padding: 5px;");
         hbBtns.setAlignment(Pos.CENTER);
 
-        vbTrolleyPage = new VBox(15, laPageTitle, hbBtns, lvTrolley, lbTrolleyTotal);
-        vbTrolleyPage.setPrefWidth(COLUMN_WIDTH);
-        vbTrolleyPage.setAlignment(Pos.TOP_CENTER);
-        vbTrolleyPage.setStyle("-fx-padding: 15px;");
+        // top bar: title + theme/music buttons
+        BorderPane topBar = new BorderPane();
+        topBar.setPadding(new Insets(5, 10, 5, 10));
+
+        // Center title
+        laPageTitle.setStyle(UIStyle.labelTitleStyle);
+        topBar.setCenter(laPageTitle);
+
+        // Dark mode button on the left
+        topBar.setLeft(btnDarkMode);
+
+        // Music button on the right
+        topBar.setRight(btnMusicToggle);
+
+        // Main content
+        VBox contentContainer = new VBox(8, topBar, lvTrolley, lbTrolleyTotal, hbBtns);
+        contentContainer.setPrefWidth(COLUMN_WIDTH + 10);
+        contentContainer.setAlignment(Pos.TOP_CENTER);
+        contentContainer.setStyle("-fx-padding: 3px;");
+
+        vbTrolleyPage = contentContainer;
+
+        // Dark Mode Toggle Button
+        btnDarkMode.setStyle(UIStyle.buttonFillBtnStyle);
+        // Create a function that applies the current styles
+        Runnable refreshStyles = () -> {
+            // 1. Toggle the boolean state in UIStyle
+            // 2. Refresh the UI elements on this page
+            vbTrolleyPage.setStyle(UIStyle.rootStyle);
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            lbProductInfo.setStyle(UIStyle.labelMulLineStyle);
+            lvTrolley.setStyle(UIStyle.listViewStyle);
+            lbTrolleyTotal.setStyle(UIStyle.labelStyle);
+            btnCancel.setStyle(UIStyle.redFillBtnStyle);
+            btnCheckout.setStyle(UIStyle.blueFillBtnStyle);
+            btnMusicToggle.setStyle(UIStyle.buttonFillBtnStyle);
+            // Update the toggle button itself
+            btnDarkMode.setText(UIStyle.isDarkMode ? "☀️ Light" : "🌙 Dark");
+            btnDarkMode.setStyle(UIStyle.buttonFillBtnStyle);
+        };
+
+        // Set the Dark Mode Action (Only once!)
+        btnDarkMode.setOnAction(e -> {
+            UIStyle.setDarkMode(!UIStyle.isDarkMode); // GLOBAL change
+        });
+
+        // Register this page to the Global Theme Listener
+        UIStyle.addThemeListener(refreshStyles);
+        // Set initial styles
+        refreshStyles.run();
         return vbTrolleyPage;
     }
 
@@ -334,8 +409,8 @@ public class CustomerView  {
         taReceipt = new TextArea();
         taReceipt.setEditable(false);
         taReceipt.setPrefSize(WIDTH/2, HEIGHT-50);
-
-        Button btnCloseReceipt = new Button("OK & Close"); //btn for closing receipt and showing trolley page
+        taReceipt.setStyle(UIStyle.listViewStyle);
+        Button btnCloseReceipt = new Button("Ok & Close"); //btn for closing receipt and showing trolley page
         btnCloseReceipt.setStyle(UIStyle.buttonStyle);
 
         btnCloseReceipt.setOnAction(this::buttonClicked);
@@ -343,7 +418,17 @@ public class CustomerView  {
         vbReceiptPage = new VBox(15, laPageTitle, taReceipt, btnCloseReceipt);
         vbReceiptPage.setPrefWidth(COLUMN_WIDTH);
         vbReceiptPage.setAlignment(Pos.TOP_CENTER);
-        vbReceiptPage.setStyle(UIStyle.rootStyleYellow);
+        vbReceiptPage.setStyle(UIStyle.rootStyle);
+
+        Runnable refreshReceiptStyles = () -> {
+            vbReceiptPage.setStyle(UIStyle.rootStyle);
+            laPageTitle.setStyle(UIStyle.labelTitleStyle);
+            taReceipt.setStyle(UIStyle.listViewStyle);
+            btnCloseReceipt.setStyle(UIStyle.buttonStyle);
+        };
+
+        UIStyle.addThemeListener(refreshReceiptStyles);
+        refreshReceiptStyles.run();
         return vbReceiptPage;
     }
 
@@ -371,7 +456,7 @@ public class CustomerView  {
                 }
                 return;
             }
-            if(action.equals("OK & Close")){
+            if(action.equals("Ok & Close")){
                 showTrolleyOrReceiptPage(vbTrolleyPage);
             }
             cusController.doAction(action);

@@ -28,18 +28,21 @@ public class OrderTracker {
     private static final TreeMap<Integer, OrderState> ordersMap = new TreeMap<>();
     private final TextArea taDisplay; //area to show all orderId and their state on the GUI
 
+    private VBox vbox;
+    private Label laTitle;
      //Constructor initializes the UI, a title Label, and a TextArea for displaying the order details.
     public OrderTracker() {
-        Label laTitle = new Label("Order_ID,  State");
+        laTitle = new Label("Order ID Tracker");
         laTitle.setStyle(UIStyle.labelTitleStyle);
 
         taDisplay = new TextArea();
         taDisplay.setEditable(false);
-        taDisplay.setStyle(UIStyle.textFiledStyle);
+        taDisplay.setPrefSize(WIDTH, HEIGHT - 100);
+        taDisplay.setStyle(UIStyle.listViewStyle);
 
-        VBox vbox = new VBox(10,laTitle, taDisplay);
+        vbox = new VBox(10,laTitle, taDisplay);
         vbox.setAlignment(Pos.TOP_CENTER);
-        vbox.setStyle(UIStyle. rootStyleGray);
+        vbox.setStyle(UIStyle. rootStyle);
 
         Scene scene = new Scene(vbox, WIDTH, HEIGHT);
         Stage window = new Stage();
@@ -49,6 +52,20 @@ public class OrderTracker {
         // Registers the window's position with WinPosManager.
         WinPosManager.registerWindow(window,WIDTH,HEIGHT); //calculate position x and y for this window
         window.show();
+
+        registerDarkModeListener();
+    }
+
+    private void registerDarkModeListener() {
+
+        Runnable refreshStyles = () -> {
+            vbox.setStyle(UIStyle.rootStyle);
+            laTitle.setStyle(UIStyle.labelTitleStyle);
+            taDisplay.setStyle(UIStyle.listViewStyle);
+        };
+
+        UIStyle.addThemeListener(refreshStyles);
+        refreshStyles.run(); // apply immediately
     }
 
     /**

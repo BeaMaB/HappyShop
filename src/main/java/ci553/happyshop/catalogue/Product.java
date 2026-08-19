@@ -58,7 +58,7 @@ public class Product implements Comparable<Product> {
     // Creates a formatted string containing ID, price (with 2 decimal places), stock amount, and description
     // Used in the Warehouse search page to display searched product information
     public String toString() {
-        String productInfo = String.format("Id: %s, £%.2f/uint, stock: %d \n%s",
+        String productInfo = String.format("ID: %s, £%.2f, Unit/Stock: %d \n%s",
                           proId, unitPrice,stockQuantity,proDescription);
         return productInfo;
     }
