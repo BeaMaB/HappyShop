@@ -173,7 +173,8 @@ public class WarehouseView  {
         laTitle.setStyle(UIStyle.labelTitleStyle);
 
         tfSearchKeyword = new TextField();
-        tfSearchKeyword.setStyle(UIStyle.textFiledStyle);
+        tfSearchKeyword.setStyle(textFiledStyle);
+        tfSearchKeyword.setPromptText("Enter ID or Product Name");
         tfSearchKeyword.setOnAction(actionEvent -> {
             try {
                 controller.process("🔍");  //pressing enter can also do search
