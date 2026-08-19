@@ -74,7 +74,7 @@ public class RemoveProductNotifier {
         pane.add(laTitle, 0, 0);
         pane.add(taRemoveMsg, 0, 1);
         pane.add(hbCustomerAction, 0, 2);
-        pane.setStyle(UIStyle.rootStyleGray);
+        pane.setStyle(UIStyle.rootStyle);
 
         scene = new Scene(pane, WIDTH, HEIGHT);
     }
