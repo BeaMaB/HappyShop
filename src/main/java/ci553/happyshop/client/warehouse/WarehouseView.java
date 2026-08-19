@@ -445,7 +445,7 @@ public class WarehouseView  {
 
     private VBox createNewProductChild() {
         //HBox for Id Label and TextField
-        Label laId = new Label("ID"+ " ".repeat(9));
+        Label laId = new Label("ID");
         laId.setStyle(UIStyle.labelStyle);
         tfIdNewPro = new TextField();
         tfIdNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
@@ -453,7 +453,7 @@ public class WarehouseView  {
         hbId.setAlignment(Pos.CENTER_LEFT);
 
         // HBox for Price Label and TextField
-        Label laPrice = new Label("Price_£ ");
+        Label laPrice = new Label("Price");
         laPrice.setStyle(UIStyle.labelStyle);
         tfPriceNewPro = new TextField();
         tfPriceNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
@@ -461,7 +461,7 @@ public class WarehouseView  {
         hbPrice.setAlignment(Pos.CENTER_LEFT);
 
         //  HBox for stock label and textFiled
-        Label laStock = new Label("Stock" +" ".repeat(4));
+        Label laStock = new Label("Stock");
         laStock.setStyle(UIStyle.labelStyle);
         tfStockNewPro = new TextField();
         tfStockNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
