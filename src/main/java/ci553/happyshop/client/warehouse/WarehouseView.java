@@ -339,7 +339,8 @@ public class WarehouseView  {
         laPrice.setStyle(UIStyle.labelStyle);
         laPrice.setMinWidth(35);
         tfPriceEdit = new TextField();
-        tfPriceEdit.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdEdit.setEditable(false);
+        tfPriceEdit.setStyle(textFiledStyle);
         HBox hbPrice = new HBox(10, laPrice, tfPriceEdit);
         hbPrice.setAlignment(Pos.CENTER_LEFT);
 
