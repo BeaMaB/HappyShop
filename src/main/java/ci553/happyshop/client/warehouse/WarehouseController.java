@@ -8,7 +8,7 @@ public class WarehouseController {
 
     void process(String action) throws SQLException, IOException {
         switch (action) {
-            case "🔍":
+            case "Search":
                 model.doSearch();
                 break;
             case "Edit":
@@ -17,10 +17,10 @@ public class WarehouseController {
             case "Delete":
                 model.doDelete();
                 break;
-            case "➕":
+            case "+":
                 model.doChangeStockBy("add");
                 break;
-            case "➖":
+            case "-":
                 model.doChangeStockBy("sub");
                 break;
             case "Submit":
