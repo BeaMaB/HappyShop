@@ -362,7 +362,6 @@ public class WarehouseView  {
         hbIdPriceImage.setAlignment(Pos.CENTER_LEFT);
 
         // Editing stock
-        Label laStock = new Label("Stock"+" ".repeat(3));
         Label laStock = new Label("Stock");
         laStock.setMinWidth(35);
         laStock.setStyle(UIStyle.labelStyle);
