@@ -348,7 +348,7 @@ public class WarehouseView  {
         VBox vbIdPrice = new VBox(10, hbId, hbPrice);
 
         // Product Image
-        ivProEdit = new ImageView("WarehouseImageHolder.jpg");
+        ivProEdit = new ImageView("click_here.png");
         ivProEdit.setFitWidth(140);
         ivProEdit.setFitHeight(90);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
@@ -475,7 +475,7 @@ public class WarehouseView  {
         VBox vbIdPriceStock = new VBox(10, hbId, hbPrice,hbStock);
 
         // VBox for Product Image and name keyword
-        ivProNewPro = new ImageView("WarehouseImageHolder.jpg");
+        ivProNewPro = new ImageView("add_image.png");
         ivProNewPro.setFitWidth(110);
         ivProNewPro.setFitHeight(110);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
@@ -620,7 +620,7 @@ public class WarehouseView  {
             ivProEdit.setImage(new Image(imageUrl));  // Attempt to load the product image
         } catch (Exception e) {
             // If loading fails, use a default image directly from the resources folder
-            ivProEdit.setImage(new Image("imageHolder.jpg"));
+            ivProEdit.setImage(new Image("image_holder.jpg"));
         }
     }
 
@@ -630,7 +630,7 @@ public class WarehouseView  {
         tfStockEdit.setText("");
         tfChangeByEdit.setText("");
         taDescriptionEdit.setText("");
-        ivProEdit.setImage(new Image("WarehouseImageHolder.jpg"));
+        ivProEdit.setImage(new Image("click_here.png"));
         disableEditProductChild(true);
     }
 
@@ -639,7 +639,7 @@ public class WarehouseView  {
        tfPriceNewPro.setText("");
        tfStockNewPro.setText("");
        taDescriptionNewPro.setText("");
-       ivProNewPro.setImage(new Image("WarehouseImageHolder.jpg"));
+       ivProNewPro.setImage(new Image("add_image.png"));
        imageUriNewPro = null; //clear the selcted image
        System.out.println("resetNewProChild in view called");
     }
