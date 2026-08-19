@@ -76,7 +76,7 @@ public class PickerView  {
 
         taOrderMap.setEditable(false);
         taOrderMap.setPrefSize(WIDTH, HEIGHT - 100);
-        taOrderMap.setStyle(UIStyle.textFiledStyle);
+        taOrderMap.setStyle(UIStyle.listViewStyle);
 
         btnProgressing = new Button("Progressing");
         btnProgressing.setOnAction(this::buttonClicked);
@@ -84,7 +84,7 @@ public class PickerView  {
 
         VBox vbOrdersListRoot = new VBox(15, laOrderMapRootTitle, taOrderMap, btnProgressing);
         vbOrdersListRoot.setAlignment(Pos.TOP_CENTER);
-        vbOrdersListRoot.setStyle(UIStyle.rootStyleYellow);
+        vbOrdersListRoot.setStyle(UIStyle.rootStyle);
 
         return vbOrdersListRoot;
     }
@@ -96,7 +96,7 @@ public class PickerView  {
         taOrderDetail.setEditable(false);
         taOrderDetail.setPrefSize(WIDTH, HEIGHT - 100);
         taOrderDetail.setText("Order details");
-        taOrderDetail.setStyle(UIStyle.textFiledStyle);
+        taOrderDetail.setStyle(UIStyle.listViewStyle);
 
         btnCollected = new Button("Customer Collected");
         btnCollected.setOnAction(this::buttonClicked);
@@ -104,7 +104,7 @@ public class PickerView  {
 
         VBox vbOrderDetailsRoot = new VBox(15, laDetailRootTitle, taOrderDetail, btnCollected);
         vbOrderDetailsRoot.setAlignment(Pos.TOP_CENTER);
-        vbOrderDetailsRoot.setStyle(UIStyle.rootStyleBlue);
+        vbOrderDetailsRoot.setStyle(UIStyle.rootStyle);
 
         return vbOrderDetailsRoot;
     }
