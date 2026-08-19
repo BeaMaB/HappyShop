@@ -27,6 +27,7 @@ public class CustomerModel {
                                   //Benefits: Flexibility: Easily change the database implementation.
 
     private Product theProduct =null; // product found from search
+    private ArrayList<Product> productList = new ArrayList<>();
     private ArrayList<Product> trolley =  new ArrayList<>(); // a list of products in trolley
 
     // Four UI elements to be passed to CustomerView for display updates.
@@ -37,28 +38,25 @@ public class CustomerModel {
 
     //SELECT productID, description, image, unitPrice,inStock quantity
     void search() throws SQLException {
-        String productId = cusView.tfId.getText().trim();
-        if(!productId.isEmpty()){
-            theProduct = databaseRW.searchByProductId(productId); //search database
-            if(theProduct != null && theProduct.getStockQuantity()>0){
-                double unitPrice = theProduct.getUnitPrice();
-                String description = theProduct.getProductDescription();
-                int stock = theProduct.getStockQuantity();
 
-                String baseInfo = String.format("Product_Id: %s\n%s,\nPrice: £%.2f", productId, description, unitPrice);
-                String quantityInfo = stock < 100 ? String.format("\n%d units left.", stock) : "";
-                displayLaSearchResult = baseInfo + quantityInfo;
-                System.out.println(displayLaSearchResult);
+        String keyword = "";
+        if (!cusView.tfSearchKeyword.getText().trim().isEmpty()) {
+                keyword = cusView.tfSearchKeyword.getText().trim();
+        }
+
+        if(!keyword.isEmpty()) {
+            productList = databaseRW.searchProduct(keyword); //search database
+            if (productList != null && !productList.isEmpty()) {
+                // Products found
+                displayLaSearchResult = "";
+            } else {
+                // No products found
+                displayLaSearchResult = "No Products found with Product ID or Name: " + keyword;
             }
-            else{
-                theProduct=null;
-                displayLaSearchResult = "No Product was found with ID " + productId;
-                System.out.println("No Product was found with ID " + productId);
-            }
-        }else{
-            theProduct=null;
-            displayLaSearchResult = "Please type ProductID";
-            System.out.println("Please type ProductID.");
+        } else { // Search box is empty
+            productList.clear();
+            displayLaSearchResult = "Please enter a Product ID or Name.";
+            System.out.println("Waiting for customer search...");
         }
         updateView();
     }
@@ -202,7 +200,7 @@ public class CustomerModel {
         else{
             imageName = "imageHolder.jpg";
         }
-        cusView.update(imageName, displayLaSearchResult, displayTaTrolley,displayTaReceipt);
+        cusView.update(imageName, displayLaSearchResult, productList, displayTaTrolley,displayTaReceipt);
     }
      // extra notes:
      //Path.toUri(): Converts a Path object (a file or a directory path) to a URI object.
