@@ -155,6 +155,17 @@ public class WarehouseView  {
         // dynamically position itself based on its size, and any already displayed windows.
         window.show();
         viewWindow = window; // Sets the global viewWindow reference to this window for future reference and management.
+
+        scene.getStylesheets().add("data:text/css," + ".combo-box-popup {" + "-fx-background-color: transparent;" + "}" +".combo-box-popup .list-view {" +"-fx-background-radius: 18;" +"-fx-border-radius: 18;" +"-fx-background-color: white;" + "-fx-padding: 5;" + "}" +".combo-box-popup .list-cell {" + "-fx-background-radius: 10;" + "}"
+        );
+
+        Runnable refreshRootStyles = () -> {
+            hbRoot.setStyle(UIStyle.rootStyle);
+            line.setStroke(UIStyle.isDarkMode ? Color.GOLD : Color.BLACK);
+        };
+
+        UIStyle.addThemeListener(refreshRootStyles);
+        refreshRootStyles.run();
     }
 
     private VBox createSearchPage() {
