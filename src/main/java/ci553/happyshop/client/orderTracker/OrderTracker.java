@@ -37,11 +37,12 @@ public class OrderTracker {
 
         taDisplay = new TextArea();
         taDisplay.setEditable(false);
-        taDisplay.setStyle(UIStyle.textFiledStyle);
+        taDisplay.setPrefSize(WIDTH, HEIGHT - 100);
+        taDisplay.setStyle(UIStyle.listViewStyle);
 
-        VBox vbox = new VBox(10,laTitle, taDisplay);
+        vbox = new VBox(10,laTitle, taDisplay);
         vbox.setAlignment(Pos.TOP_CENTER);
-        vbox.setStyle(UIStyle. rootStyleGray);
+        vbox.setStyle(UIStyle. rootStyle);
 
         Scene scene = new Scene(vbox, WIDTH, HEIGHT);
         Stage window = new Stage();
