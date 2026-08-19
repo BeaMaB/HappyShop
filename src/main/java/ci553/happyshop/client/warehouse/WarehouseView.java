@@ -449,7 +449,7 @@ public class WarehouseView  {
         laId.setStyle(UIStyle.labelStyle);
         laId.setMinWidth(40);
         tfIdNewPro = new TextField();
-        tfIdNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfIdNewPro.setStyle(textFiledStyle);
         HBox hbId = new HBox(10, laId, tfIdNewPro);
         hbId.setAlignment(Pos.CENTER_LEFT);
 
@@ -458,7 +458,7 @@ public class WarehouseView  {
         laPrice.setStyle(UIStyle.labelStyle);
         laPrice.setMinWidth(40);
         tfPriceNewPro = new TextField();
-        tfPriceNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
+        tfPriceNewPro.setStyle(textFiledStyle);
         HBox hbPrice = new HBox(10, laPrice, tfPriceNewPro);
         hbPrice.setAlignment(Pos.CENTER_LEFT);
 
@@ -468,6 +468,7 @@ public class WarehouseView  {
         tfStockNewPro = new TextField();
         tfStockNewPro.setStyle("-fx-font-size: 14px; -fx-pref-width: 100px;");
         laStock.setMinWidth(40);
+        tfStockNewPro.setStyle(textFiledStyle);
         HBox hbStock = new HBox(10, laStock, tfStockNewPro);
         hbStock.setAlignment(Pos.CENTER_LEFT);
 
