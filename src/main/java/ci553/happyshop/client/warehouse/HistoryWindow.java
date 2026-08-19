@@ -39,7 +39,6 @@ public class HistoryWindow {
         taHistory.setEditable(false);
         taHistory.setStyle(UIStyle.historyTextFiledStyle);
         VBox vbHistory = new VBox(taHistory);
-        scene = new Scene(vbHistory,WIDTH,HEIGHT);
         scene = new Scene(vbHistory, WIDTH, HEIGHT);
         vbHistory.setPadding(new Insets(15)); // Padding from window border
         vbHistory.setAlignment(Pos.CENTER); // Center the TextArea
