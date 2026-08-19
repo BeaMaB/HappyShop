@@ -285,7 +285,7 @@ public class WarehouseView  {
         // Set default selected value, so only when value changed trigger setOnAction
         cbProductFormMode.setValue("Edit Existing Product in Stock");
 
-        vbEditProduct = createEditProdcutChild();
+        vbEditProduct = createEditProductChild();
         disableEditProductChild(true); //disable editable component until user selects a product and cilck btnEdit
         vbNewProduct = createNewProductChild();
 
@@ -311,7 +311,7 @@ public class WarehouseView  {
     }
 
 
-    private VBox createEditProdcutChild() {
+    private VBox createEditProductChild() {
         //HBox for Id Label and TextField
         Label laId = new Label("ID"+" ".repeat(8));
         laId.setStyle(UIStyle.labelStyle);
