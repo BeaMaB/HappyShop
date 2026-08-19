@@ -229,7 +229,7 @@ public class CustomerModel {
             System.out.println("Image absolute path: " + imageFullPath); // Debugging to ensure path is correct
         }
         else{
-            imageName = "SearchItem.png";
+            imageName = "search_item.png";
         }
         cusView.update(imageName, displayLaSearchResult, productList, trolley, displayTaReceipt);
     }
