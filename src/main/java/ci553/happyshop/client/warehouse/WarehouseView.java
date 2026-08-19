@@ -476,8 +476,8 @@ public class WarehouseView  {
 
         // VBox for Product Image and name keyword
         ivProNewPro = new ImageView("WarehouseImageHolder.jpg");
-        ivProNewPro.setFitWidth(100);
-        ivProNewPro.setFitHeight(70);
+        ivProNewPro.setFitWidth(110);
+        ivProNewPro.setFitHeight(110);
         ivProEdit.setPreserveRatio(true); //Image keeps its original shape and fits inside 100×70
         ivProEdit.setSmooth(true);//make it smooth and nice-looking
 
