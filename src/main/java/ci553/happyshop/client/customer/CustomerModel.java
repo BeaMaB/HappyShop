@@ -156,7 +156,7 @@ public class CustomerModel {
                 trolley.clear();
                 displayTaTrolley ="";
                 displayTaReceipt = String.format(
-                        "Order_ID: %s\nOrdered_Date_Time: %s\n%s",
+                        "Order ID: %s\nOrdered Date & Time: %s\n%s",
                         theOrder.getOrderId(),
                         theOrder.getOrderedDateTime(),
                         ProductListFormatter.buildString(theOrder.getProductList())
